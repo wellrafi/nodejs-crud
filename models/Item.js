@@ -44,6 +44,12 @@ const itemSchema = Schema({
 			ref: 'Activity',
 		},
 	],
+	createdAt: {
+		type: Date,
+	},
+	updatedAt: {
+		type: Date
+	}
 });
 
 const model = mongoose.model('Item', itemSchema);

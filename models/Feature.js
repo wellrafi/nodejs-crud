@@ -1,51 +1,27 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-const { ObjectId } = Schema;
 
-const itemSchema = Schema({
-	title: {
+const featureSchema = Schema({
+	name: {
 		type: String,
 		required: true,
 	},
-	price: {
+	qty: {
 		type: Number,
 		required: true,
 	},
-	country: {
-		type: String,
-		default: 'Indonesia',
-	},
-	city: {
+	imageUrl: {
 		type: String,
 		required: true,
 	},
-	isPopular: {
-		type: Boolean,
+	createdAt: {
+		type: Date,
 	},
-	description: {
-		type: String,
-		required: true,
-	},
-	imageId: [
-		{
-			type: ObjectId,
-			ref: 'Image',
-		},
-	],
-	featureId: [
-		{
-			type: ObjectId,
-			ref: 'Feature',
-		},
-	],
-	activityId: [
-		{
-			type: ObjectId,
-			ref: 'Activity',
-		},
-	],
+	updatedAt: {
+		type: Date
+	}
 });
 
-const model = mongoose.model('Feature', itemSchema);
+const model = mongoose.model('Feature', featureSchema);
 
 module.exports = model;
