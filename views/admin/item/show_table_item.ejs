@@ -1,0 +1,50 @@
+<div class="tab-pane fade show active" id="show" role="tabpanel" aria-labelledby="show-tab">
+	<!-- DataTales Example -->
+	<div class="card mt-4 mb-4">
+		<div class="card-body">
+			<div class="table-responsive">
+				<table class="table hover" id="dataTable" width="100%" cellspacing="0">
+					<thead>
+						<tr>
+							<th>No</th>
+							<th>Title</th>
+							<th>Price</th>
+							<th>Country</th>
+							<th>City</th>
+							<th>Action</th>
+						</tr>
+					</thead>
+					<tbody>
+						<% for( let i = 0; i < item.length; i++ ) { %>
+						<tr>
+							<td><%= i + 1 %></td>
+							<td><a href="/admin/item/<%= item[i].id %>"> <%= item[i].title %></a></td>
+							<td><%= item[i].price %></td>
+							<td><%= item[i].country %></td>
+							<td><%= item[i].city %></td>
+							<td>
+								<form action="/admin/item/<%= item[i].id %>?_method=DELETE" method="POST">
+									<button
+										type="button"
+										class="btn btn-icon btn-warning btn-circle btn-sm btn-update-item"
+										data-toggle="modal"
+										data-target="#edit-modal-item"
+										data-id="<%= item[i].id %>"
+										data-name="<%= item[i].title %>"
+									>
+										<i class="fas fa-edit"></i>
+									</button>
+									<button type="submit" class="btn btn-icon btn-danger btn-circle btn-sm">
+										<i class="fas fa-trash"></i>
+									</button>
+									<a href="#" class="btn btn-success btn-circle btn-sm"><i class="fas fa-plus"></i></a>
+								</form>
+							</td>
+						</tr>
+						<% } %>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>

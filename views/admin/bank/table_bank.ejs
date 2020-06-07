@@ -1,22 +1,56 @@
 <!-- DataTales Example -->
-<div class="card shadow mb-4">
+<div class="card mb-4">
 	<div class="card-header py-3">
-		<h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+		<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#add-modal-bank">
+			<i class="fas fa-plus"></i>
+			<span class="ml-1">Add Bank</span>
+		</button>
 	</div>
 	<div class="card-body">
 		<div class="table-responsive">
 			<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
 				<thead>
 					<tr>
-						<th>No</th>
+						<th style="width: 30px;">No</th>
 						<th>Nama Bank</th>
+						<th style="width: 70px;">Image</th>
 						<th>Nomor Rekening</th>
 						<th>Nama Pemilik</th>
 						<th>Action</th>
 					</tr>
 				</thead>
 				<tbody>
-					
+					<% for( let i = 0; i < bank.length; i++ ) { %>
+					<tr>
+						<td><%= i + 1 %></td>
+						<td><%= bank[i].nameBank %></td>
+						<td><img src="<%= bank[i].imageUrl %>" height="30" alt=""></td>
+						<td><%= bank[i].nomorRekening %></td>
+						<td><%= bank[i].name %></td>
+						<td>
+							<form
+								action="/admin/bank/<%= bank[i].id %>?_method=DELETE"
+								method="POST"
+							>
+								<button
+									type="button"
+									class="btn btn-icon btn-warning btn-circle btn-sm btn-update-bank"
+									data-toggle="modal"
+									data-target="#edit-modal-bank"
+									data-id="<%= bank[i].id %>"
+									data-name="<%= bank[i].name %>"
+									data-name-bank="<%= bank[i].nameBank %>"
+									data-nomor-rekening="<%= bank[i].nomorRekening %>"
+								>
+									<i class="fas fa-edit"></i>
+								</button>
+								<button type="submit" class="btn btn-icon btn-danger btn-circle btn-sm">
+									<i class="fas fa-trash"></i>
+								</button>
+							</form>
+						</td>
+					</tr>
+					<% } %>
 				</tbody>
 			</table>
 		</div>

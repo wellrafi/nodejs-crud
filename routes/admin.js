@@ -1,17 +1,27 @@
 const router = require('express').Router();
-const adminController = require('../controllers/adminController')
+const adminController = require('../controllers/adminController');
+const { upload, uploadMultiple} = require('../middlewares/multer');
 
 router.get('/dashboard', adminController.viewDashboard);
 
-// Category Routing
+// CATEGORY routes
 router.get('/category', adminController.viewCategory);
 router.post('/category', adminController.addCategory);
 router.put('/category/:categoryId', adminController.updateCategory);
 router.delete('/category/:categoryId', adminController.deleteCategory);
 
-
+// BANK routes
 router.get('/bank', adminController.viewBank);
+router.post('/bank', upload, adminController.addBank);
+router.put('/bank/:bankId', upload, adminController.editBank);
+router.delete('/bank/:bankId', adminController.deleteBank);
+
+// ITEM routes
 router.get('/item', adminController.viewItem);
+router.get('/item/:idItem', adminController.showItem);
+router.post('/item', uploadMultiple, adminController.addItem);
+
+// BOOKING routes
 router.get('/booking', adminController.viewBooking);
 
 module.exports = router;

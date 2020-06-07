@@ -14,12 +14,16 @@ const bankSchema = Schema({
 		type: String,
 		required: true,
 	},
+	imageUrl: {
+		type: String,
+		required: true,
+	},
 	createdAt: {
 		type: Date,
 	},
 	updatedAt: {
-		type: Date
-	}
+		type: Date,
+	},
 });
 
 const model = mongoose.model('Bank', bankSchema);

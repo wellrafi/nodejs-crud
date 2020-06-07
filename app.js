@@ -1,3 +1,4 @@
+require('dotenv').config();
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
@@ -8,7 +9,7 @@ var cors = require('cors');
 var mongoose = require('mongoose');
 const flash = require('connect-flash');
 const session = require('express-session');
-mongoose.connect('mongodb://localhost:27017/bwamern', {
+mongoose.connect(process.env.MONGODB_URL, {
 	useFindAndModify: true,
 	useCreateIndex: true,
 	useUnifiedTopology: true,
@@ -31,7 +32,7 @@ app.use(
 		secret: 'keyboard cat',
 		resave: false,
 		saveUninitialized: true,
-		cookie: { secure: true },
+		cookie: { maxAge: 6000 },
 	})
 );
 app.use(flash());

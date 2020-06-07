@@ -16,6 +16,8 @@
         <!-- Begin Page Content -->
         <div class="container-fluid">
 
+          <%- include('../../partials/message.ejs') %> 
+
           <!-- Page Heading -->
           <h1 class="h3 mb-4 text-gray-800">Bank</h1>
 
@@ -59,5 +61,19 @@
     </div>
   </div>
 
+<%- include('add_modal_bank.ejs') %> 
+<%- include('edit_modal_bank.ejs') %> 
 <%- include('../../partials/js.ejs') %> 
-
+  
+<script>
+  $("#dataTable").on('click', '.btn-update-bank', function () {
+    let id = $(this).data('id');
+    let name = $(this).data('name');
+    let name_bank = $(this).data('name-bank');
+    let nomor_rekening = $(this).data('nomor-rekening');
+    $('#edit-modal-bank-name').val(name);
+    $('#edit-modal-bank-name-bank').val(name_bank);
+    $('#edit-modal-bank-nomor-rekening').val(nomor_rekening);
+    $('#edit-modal-bank-form').attr("action", "/admin/bank/" + id + "?_method=PUT");
+  })
+</script>

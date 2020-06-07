@@ -26,6 +26,10 @@ const itemSchema = Schema({
 		type: String,
 		required: true,
 	},
+	categoryId: {
+		type: ObjectId,
+		ref: "Category",
+	},
 	imageId: [
 		{
 			type: ObjectId,
