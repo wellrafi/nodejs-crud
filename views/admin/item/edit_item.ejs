@@ -1,7 +1,7 @@
-<div class="tab-pane fade show active" id="edit-item" role="tabpanel" aria-labelledby="edit-item-tab">
+<div class="tab-pane fade" id="detail-item" role="tabpanel" aria-labelledby="detail-item-tab">
 	<div class="card mt-4 mb-4">
 		<div class="card-body">
-			<form action="/admin/item" method="POST" enctype="multipart/form-data">
+			<form action="/admin/item/<%= item.id %>?_method=PUT " method="POST" enctype="multipart/form-data">
 				<div class="form-group">
 					<label for="title">Title</label>
 					<input
@@ -39,6 +39,18 @@
 					/>
 				</div>
 				<div class="form-group">
+					<label for="country">Country</label>
+					<input
+						type="text"
+						class="form-control"
+						id="country"
+						name="country"
+						aria-describedby="country"
+						placeholder="Enter country"
+						value="<%= item.country %>"
+					/>
+				</div>
+				<div class="form-group">
 					<label for="category">Category</label>
 					<select name="categoryId" id="" class="form-control">
 						<option value=""> --- Category --- </option>
@@ -53,15 +65,19 @@
 				</div>
 				<div class="form-group">
 					<label for="image">Image</label>
-					<input
-						type="file"
-						class="form-control"
-						id="image"
-						name="image"
-						aria-describedby="image"
-						placeholder="Enter image"
-						multiple
-					/>
+					<div>
+						<button class="btn btn-primary" type="button" onclick="document.getElementById('image').click()">Choose Image</button>
+						<input
+							style="display: none;"
+							type="file"
+							class="form-control"
+							id="image"
+							name="image"
+							aria-describedby="image"
+							placeholder="Enter image"
+							multiple
+						/>
+					</div>
 				</div>
 				<div class="form-group">
 					<label for="description">Deskripsi</label>
@@ -69,7 +85,7 @@
 						<%= item.description %> 
 					</textarea>
 				</div>
-				<button type="submit" class="btn btn-primary">Update Item</button>
+				<button type="submit" class="btn btn-primary">Update item</button>
 			</form>
 		</div>
 	</div>

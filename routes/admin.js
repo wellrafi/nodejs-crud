@@ -18,8 +18,15 @@ router.delete('/bank/:bankId', adminController.deleteBank);
 
 // ITEM routes
 router.get('/item', adminController.viewItem);
+router.get('/item/add', adminController.viewAddItem);
 router.get('/item/:idItem', adminController.showItem);
 router.post('/item', uploadMultiple, adminController.addItem);
+router.put('/item/:idItem', uploadMultiple, adminController.updateItem);
+router.delete('/item/:idItem', uploadMultiple, adminController.deleteItem);
+
+// FEATURE routes
+router.post('/feature', upload, adminController.addFeature);
+
 
 // BOOKING routes
 router.get('/booking', adminController.viewBooking);

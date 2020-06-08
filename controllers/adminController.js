@@ -194,11 +194,33 @@ module.exports = {
 		}
 	},
 
+	viewAddItem: async function (req, res, next) {
+		try {
+			let getCategory = await models.category.find();
+			const alertMessage = req.flash('allertMessage');
+			const alertStatus = req.flash('alertStatus');
+			const alert = {
+				message: alertMessage,
+				status: alertStatus,
+			};
+			res.render('admin/item/view_add_item', {
+				title: 'Item | Wellrafi',
+				alert: alert,
+				category: getCategory,
+			});
+		} catch (error) {
+			req.flash('allertMessage', `${error.message}`);
+			req.flash('alertStatus', 'danger');
+			res.redirect('/admin/item');
+		}
+	},
+
 	addItem: async function (req, res, next) {
 		try {
-			const { categoryId, title, price, city, description } = req.body;
+			const { categoryId, title, price, city, country, description } = req.body;
+			const category = await models.category.findById(categoryId);
+			let imageId = [];
 			if (req.files.length > 0) {
-				const category = await models.category.findById(categoryId);
 				let image = [];
 				for (let i = 0; i < req.files.length; i++) {
 					image.push({
@@ -208,26 +230,27 @@ module.exports = {
 					});
 				}
 				const imageSave = await models.image.insertMany(image);
-				const imageId = imageSave.map((value) => {
+				imageId = imageSave.map((value) => {
 					return { _id: value._id };
 				});
-				const newItem = {
-					categoryId: category._id,
-					title,
-					description,
-					price,
-					city,
-					imageId: imageId,
-					createdAt: Date.now(),
-					updatedAt: Date.now(),
-				};
-				const item = await models.item.create(newItem);
-				category.itemId.push({ _id: item._id });
-				await category.save();
-				req.flash('allertMessage', 'Success add new item');
-				req.flash('alertStatus', 'success');
-				res.redirect('/admin/item');
 			}
+			const newItem = {
+				categoryId: category._id,
+				title,
+				description,
+				price,
+				city,
+				country,
+				imageId,
+				createdAt: Date.now(),
+				updatedAt: Date.now(),
+			};
+			const item = await models.item.create(newItem);
+			category.itemId.push({ _id: item._id });
+			await category.save();
+			req.flash('allertMessage', 'Success add new item');
+			req.flash('alertStatus', 'success');
+			res.redirect('/admin/item');
 		} catch (error) {
 			req.flash('allertMessage', `${error.message}`);
 			req.flash('alertStatus', 'danger');
@@ -256,6 +279,99 @@ module.exports = {
 			req.flash('allertMessage', `${error.message}`);
 			req.flash('alertStatus', 'danger');
 			res.redirect('/admin/item');
+		}
+	},
+
+	updateItem: async function (req, res, next) {
+		try {
+			const { categoryId, title, price, city, description, country } = req.body;
+			const { idItem } = req.params;
+			const category = await models.category.findById(categoryId);
+			const item = await models.item.findById(idItem);
+			let imageId = item.imageId;
+			if (req.files.length > 0) {
+				let image = [];
+				for (let i = 0; i < req.files.length; i++) {
+					image.push({
+						imageUrl: `http://localhost:3131/images/${req.files[i].filename}`,
+						createdAt: Date.now(),
+						updatedAt: Date.now(),
+					});
+				}
+				const imageSave = await models.image.insertMany(image);
+				imageId = imageSave.map((value) => {
+					return { _id: value._id };
+				});
+			}
+
+			const newItem = {
+				categoryId: category._id,
+				title,
+				description,
+				price,
+				city,
+				country,
+				imageId,
+				createdAt: Date.now(),
+				updatedAt: Date.now(),
+			};
+			const itemUpdated = await models.item.findByIdAndUpdate(idItem, newItem);
+			category.itemId.push({ _id: itemUpdated._id });
+			await category.save();
+			req.flash('allertMessage', 'Success update item');
+			req.flash('alertStatus', 'success');
+			res.redirect('/admin/item');
+		} catch (error) {
+			req.flash('allertMessage', `${error.message}`);
+			req.flash('alertStatus', 'danger');
+			res.redirect('/admin/item');
+		}
+	},
+
+	deleteItem: async function (req, res, next) {
+		try {
+			const { idItem } = req.params;
+			const getItem = await models.item.findById(idItem).populate({ path: 'imageId', select: '_id' });
+			if (getItem.imageId.length > 0) {
+				getItem.imageId.forEach(async (image) => {
+					await fs.unlink(path.join('public/' + image.imageUrl.replace('http://localhost:3131', '')));
+				});
+				await models.image.deleteMany({ _id: getItem.imageId });
+			}
+			await getItem.delete();
+			req.flash('allertMessage', 'Success delete item');
+			req.flash('alertStatus', 'success');
+			res.redirect('/admin/item');
+		} catch (error) {
+			req.flash('allertMessage', `${error.message}`);
+			req.flash('alertStatus', 'danger');
+			res.redirect('/admin/item');
+		}
+	},
+
+	addFeature: async function (req, res, next) {
+		try {
+			const { _itemId, name, qty } = req.body;
+			const getItem = await models.item.findById(_itemId);
+			let imageUrl = "";
+			if (req.file) {
+				imageUrl = req.file.filename;
+				await models.image.create({ imageUrl: `/images/${imageUrl}` });
+			}
+			const saveFeature = await models.feature.create({
+				name,
+				qty,
+				imageUrl,
+			});
+			getItem.featureId.push(saveFeature.id);
+			await getItem.save();
+			req.flash('allertMessage', 'Success delete item');
+			req.flash('alertStatus', 'success');
+			res.redirect('/admin/item/' + _itemId + "#feature");
+		} catch (error) {
+			req.flash('allertMessage', `${error.message}`);
+			req.flash('alertStatus', 'danger');
+			res.redirect('/admin/item/');
 		}
 	},
 

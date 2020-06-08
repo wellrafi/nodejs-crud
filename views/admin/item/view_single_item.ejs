@@ -12,39 +12,62 @@
 
 			<!-- Begin Page Content -->
 			<div class="container-fluid">
+				<%- include('../../partials/message.ejs') %>
 
-				<%- include('../../partials/message.ejs') %> 
-				
 				<!-- Page Heading -->
-				<h1 class="h3 mb-4 text-gray-800"><%= item.title %> </h1>
+				<h1 class="h3 mb-4 text-gray-800"><%= item.title %></h1>
 
 				<nav>
 					<div class="nav nav-tabs" id="nav-tab" role="tablist">
 						<a
-							class="nav-item nav-link active"
-							id="edit-item-tab"
+							class="nav-item nav-link"
+							id="detail-item-tab"
 							data-toggle="tab"
-							href="#edit-item"
+							href="#detail-item"
+							onclick="pushUrl('detail')"
 							role="tab"
-							aria-controls="edit-item"
-							aria-selected="true"
-							>Edit item</a
+							aria-controls="detail-item"
+							aria-selected="false"
+							>Detail</a
 						>
 						<a
 							class="nav-item nav-link"
 							id="image-item-tab"
 							data-toggle="tab"
 							href="#image-item"
+							onclick="pushUrl('image')"
 							role="tab"
 							aria-controls="image-item"
 							aria-selected="false"
-							>Image item</a
+							>Images</a
+						>
+						<a
+							class="nav-item nav-link"
+							id="feature-item-tab"
+							data-toggle="tab"
+							href="#feature-item"
+							onclick="pushUrl('feature')"
+							role="tab"
+							aria-controls="feature-item"
+							aria-selected="false"
+							>Feature</a
+						>
+						<a
+							class="nav-item nav-link"
+							id="activity-item-tab"
+							data-toggle="tab"
+							href="#activity-item"
+							onclick="pushUrl('activity')"
+							role="tab"
+							aria-controls="activity-item"
+							aria-selected="false"
+							>Activity</a
 						>
 					</div>
 				</nav>
 				<div class="tab-content" id="nav-tabContent">
-					<%- include('edit_item.ejs')  %> 
-					<%- include('show_image_item.ejs')  %> 
+					<%- include('edit_item.ejs') %> <%- include('show_image_item.ejs') %> <%-
+					include('show_activity_item.ejs') %> <%- include('show_feature_item.ejs') %>
 				</div>
 			</div>
 			<!-- /.container-fluid -->
@@ -92,4 +115,20 @@
 
 <script>
 	CKEDITOR.replace('description');
+	$(document).ready(function () {
+		$('table.dataTable').DataTable();
+	});
+	window.onload = function () {
+		let active = window.location.href.split('#')[1];
+		let btnActive = active ? active + '-item-tab' : 'detail-item-tab';
+		let tableActive = active ? active + '-item' : 'detail-item';
+		let doc = document.getElementById(btnActive);
+		let fom = document.getElementById(tableActive);
+		doc.setAttribute('class', 'nav-item nav-link active');
+		fom.setAttribute('class', 'tab-pane fade show active');
+	};
+	function pushUrl(value) {
+		let origin = window.location.href.split('#')[0];
+		window.location.href = origin + '#' + value;
+	}
 </script>

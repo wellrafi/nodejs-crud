@@ -18,33 +18,8 @@
 				<!-- Page Heading -->
 				<h1 class="h3 mb-4 text-gray-800">Item</h1>
 
-				<nav>
-					<div class="nav nav-tabs" id="nav-tab" role="tablist">
-						<a
-							class="nav-item nav-link active"
-							id="show-tab"
-							data-toggle="tab"
-							href="#show"
-							role="tab"
-							aria-controls="show"
-							aria-selected="true"
-							>Show Item</a
-						>
-						<a
-							class="nav-item nav-link"
-							id="add-tab"
-							data-toggle="tab"
-							href="#add"
-							role="tab"
-							aria-controls="add"
-							aria-selected="false"
-							>Add Item</a
-						>
-					</div>
-				</nav>
-				<div class="tab-content" id="nav-tabContent">
-					<%- include('show_table_item.ejs') %> <%- include('add_item.ejs') %>
-				</div>
+				<%- include('show_table_item.ejs') %>
+				
 			</div>
 			<!-- /.container-fluid -->
 		</div>

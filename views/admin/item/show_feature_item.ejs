@@ -1,16 +1,16 @@
-<div class="tab-pane fade show active" id="show" role="tabpanel" aria-labelledby="show-tab">
+<div class="tab-pane fade" id="feature-item" role="tabpanel" aria-labelledby="feature-item-tab">
 	<!-- DataTales Example -->
 	<div class="card mt-4 mb-4">
 		<div class="card-header py-3">
 			<!-- Button trigger modal -->
-			<a type="button" class="btn btn-primary" href="/admin/item/add">
+			<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#add-modal-feature">
 				<i class="fas fa-plus"></i>
-				<span class="ml-1">Add new item</span>
-			</a>
+				<span class="ml-1">Add new feature</span>
+			</button>
 		</div>
 		<div class="card-body">
 			<div class="table-responsive">
-				<table class="table hover" id="dataTable" width="100%" cellspacing="0">
+				<table class="table hover dataTable" width="100%" cellspacing="0">
 					<thead>
 						<tr>
 							<th style="width: 50;">No</th>
@@ -34,9 +34,7 @@
 									<button type="submit" class="btn btn-icon btn-danger btn-circle btn-sm">
 										<i class="fas fa-trash"></i>
 									</button>
-									<a href="#" class="btn btn-success btn-circle btn-sm"
-										><i class="fas fa-plus"></i
-									></a>
+									<a href="#" class="btn btn-success btn-circle btn-sm"><i class="fas fa-plus"></i></a>
 								</form>
 							</td>
 						</tr>
@@ -47,3 +45,5 @@
 		</div>
 	</div>
 </div>
+
+<%- include('add_modal_feature.ejs') %> 
