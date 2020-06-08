@@ -13,28 +13,37 @@
 				<table class="table hover dataTable" width="100%" cellspacing="0">
 					<thead>
 						<tr>
-							<th style="width: 50;">No</th>
-							<th>Title</th>
-							<th>Price</th>
-							<th>Country</th>
-							<th>City</th>
+							<th style="width: 50px;">No</th>
+							<th>Name</th>
+							<th>Qty</th>
+							<th>Image</th>
 							<th>Action</th>
 						</tr>
 					</thead>
 					<tbody>
-						<% for( let i = 0; i < item.length; i++ ) { %>
+						<% for( let i = 0; i < item.featureId.length; i++ ) { %>
 						<tr>
 							<td><%= i + 1 %></td>
-							<td><a href="/admin/item/<%= item[i].id %>"> <%= item[i].title %></a></td>
-							<td><%= item[i].price %></td>
-							<td><%= item[i].country %></td>
-							<td><%= item[i].city %></td>
+							<td><%= item.featureId[i].name %></td>
+							<td><%= item.featureId[i].qty %></td>
+							<td><img src="<%= item.featureId[i].imageUrl%>" height="50" alt=""></td>
 							<td>
-								<form action="/admin/item/<%= item[i].id %>?_method=DELETE" method="POST">
+								<form action="/admin/feature/<%= item.featureId[i].id %>?_method=DELETE" method="POST">
+									<button
+										type="button"
+										class="btn btn-icon btn-info btn-circle btn-sm btn-update-feature"
+										data-toggle="modal"
+										data-target="#edit-modal-feature"
+										data-id="<%= item.featureId[i].id %>"
+										data-name="<%= item.featureId[i].name %>"
+										data-qty="<%= item.featureId[i].qty %>"
+										data-image="<%= item.featureId[i].image %>"
+									>
+										<i class="fas fa-edit"></i>
+									</button>
 									<button type="submit" class="btn btn-icon btn-danger btn-circle btn-sm">
 										<i class="fas fa-trash"></i>
 									</button>
-									<a href="#" class="btn btn-success btn-circle btn-sm"><i class="fas fa-plus"></i></a>
 								</form>
 							</td>
 						</tr>

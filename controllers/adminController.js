@@ -261,7 +261,10 @@ module.exports = {
 	showItem: async function (req, res, next) {
 		try {
 			const { idItem } = req.params;
-			const getItem = await models.item.findById(idItem).populate({ path: 'imageId', select: 'id imageUrl' });
+			const getItem = await models.item
+				.findById(idItem)
+				.populate({ path: 'imageId', select: 'id imageUrl' })
+				.populate({ path: 'featureId', select: 'id name qty imageUrl' });
 			const category = await models.category.find({});
 			const alertMessage = req.flash('allertMessage');
 			const alertStatus = req.flash('alertStatus');
@@ -351,23 +354,26 @@ module.exports = {
 
 	addFeature: async function (req, res, next) {
 		try {
-			const { _itemId, name, qty } = req.body;
-			const getItem = await models.item.findById(_itemId);
-			let imageUrl = "";
+			const { itemId, name, qty } = req.body;
+			const getItem = await models.item.findById(itemId);
+			let imageUrl = '';
 			if (req.file) {
-				imageUrl = req.file.filename;
-				await models.image.create({ imageUrl: `/images/${imageUrl}` });
+				imageUrl = `${process.env.DOMAIN}/images/${req.file.filename}`;
+				await models.image.create({ imageUrl });
 			}
 			const saveFeature = await models.feature.create({
 				name,
 				qty,
 				imageUrl,
+				itemId,
+				createdAt: Date.now(),
+				updatedAt: Date.now(),
 			});
 			getItem.featureId.push(saveFeature.id);
 			await getItem.save();
-			req.flash('allertMessage', 'Success delete item');
+			req.flash('allertMessage', 'Success add new feature in ' + getItem.title);
 			req.flash('alertStatus', 'success');
-			res.redirect('/admin/item/' + _itemId + "#feature");
+			res.redirect('/admin/item/' + itemId + '#feature');
 		} catch (error) {
 			req.flash('allertMessage', `${error.message}`);
 			req.flash('alertStatus', 'danger');

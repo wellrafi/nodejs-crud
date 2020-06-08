@@ -117,6 +117,14 @@
 	CKEDITOR.replace('description');
 	$(document).ready(function () {
 		$('table.dataTable').DataTable();
+		$(".dataTable").on('click', '.btn-update-feature', function () {
+			let id = $(this).data('id');
+			let name = $(this).data('name');
+			let qty = $(this).data('qty');
+			$('#edit-modal-feature-name').val(name);
+			$('#edit-modal-feature-qty').val(qty);
+			$('#edit-modal-feature-form').attr("action", "/admin/feature/" + id + "?_method=PUT");
+		})
 	});
 	window.onload = function () {
 		let active = window.location.href.split('#')[1];
