@@ -14,23 +14,21 @@
 					<thead>
 						<tr>
 							<th style="width: 50;">No</th>
-							<th>Title</th>
-							<th>Price</th>
-							<th>Country</th>
-							<th>City</th>
+							<th>Name</th>
+							<th>Type</th>
+							<th>Image</th>
 							<th>Action</th>
 						</tr>
 					</thead>
 					<tbody>
-						<% for( let i = 0; i < item.length; i++ ) { %>
+						<% for( let i = 0; i < item.activityId.length; i++ ) { %>
 						<tr>
 							<td><%= i + 1 %></td>
-							<td><a href="/admin/item/<%= item[i].id %>"> <%= item[i].title %></a></td>
-							<td><%= item[i].price %></td>
-							<td><%= item[i].country %></td>
-							<td><%= item[i].city %></td>
+							<td><%= item.activityId[i].name %></td>
+							<td><%= item.activityId[i].type %></td>
+							<td><%= item.activityId[i].image %></td>
 							<td>
-								<form action="/admin/item/<%= item[i].id %>?_method=DELETE" method="POST">
+								<form action="/admin/item/<%= item.activityId[i].id %>/activity?_method=DELETE" method="POST">
 									<button type="submit" class="btn btn-icon btn-danger btn-circle btn-sm">
 										<i class="fas fa-trash"></i>
 									</button>
@@ -47,3 +45,5 @@
 		</div>
 	</div>
 </div>
+
+<%- include('modal_activity.ejs') %> 

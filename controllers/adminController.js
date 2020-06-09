@@ -352,13 +352,29 @@ module.exports = {
 		}
 	},
 
+	getFeature: async function (req, res, next) {
+		try {
+			const alertMessage = req.flash('allertMessage');
+			const alertStatus = req.flash('alertStatus');
+			const alert = {
+				message: alertMessage,
+				status: alertStatus,
+			};
+			res.render('admin/feature/view_feature', {alert})
+		} catch (error) {
+			req.flash('allertMessage', `${error.message}`);
+			req.flash('alertStatus', 'danger');
+			res.redirect('/admin/item/');
+		}
+	},
+
 	addFeature: async function (req, res, next) {
 		try {
 			const { itemId, name, qty } = req.body;
 			const getItem = await models.item.findById(itemId);
 			let imageUrl = '';
 			if (req.file) {
-				imageUrl = `${process.env.DOMAIN}/images/${req.file.filename}`;
+				imageUrl = `${process.env.IMAGE_DOMAIN}/images/${req.file.filename}`;
 				await models.image.create({ imageUrl });
 			}
 			const saveFeature = await models.feature.create({
@@ -374,6 +390,125 @@ module.exports = {
 			req.flash('allertMessage', 'Success add new feature in ' + getItem.title);
 			req.flash('alertStatus', 'success');
 			res.redirect('/admin/item/' + itemId + '#feature');
+		} catch (error) {
+			req.flash('allertMessage', `${error.message}`);
+			req.flash('alertStatus', 'danger');
+			res.redirect('/admin/item/');
+		}
+	},
+
+	editFeature: async function (req, res) {
+		try {
+			const { name, qty } = req.body;
+			const { idFeature } = req.params;
+			const getFeature = await models.item.findById(idFeature);
+			let imageUrl = getFeature.imageUrl;
+			if (req.file) {
+				imageUrl = `${process.env.IMAGE_DOMAIN}/images/${req.file.filename}`;
+				await fs.unlink(path.join('public/' + imageUrl.replace('http://localhost:3131', '')));
+				await models.image.create({ imageUrl });
+			}
+			getFeature.name = name;
+			getFeature.qty = qty;
+			getFeature.imageUrl = imageUrl;
+			getFeature.updatedAt = Date.now();
+			await getFeature.save();
+			req.flash('allertMessage', 'Success add new feature in ' + getItem.title);
+			req.flash('alertStatus', 'success');
+			res.redirect('/admin/item/' + itemId + '#feature');
+		} catch (error) {
+			req.flash('allertMessage', `${error.message}`);
+			req.flash('alertStatus', 'danger');
+			res.redirect('/admin/item/');
+		}
+	},
+
+	deleteFeature: async function (req, res) {
+		try {
+			const { idFeature } = req.params;
+			const { idItem } = req.body;
+			const getFeature = await models.item.findById(idItem);
+			let imageUrl = getFeature.imageUrl;
+			await fs.unlink(path.join('public/' + imageUrl.replace('http://localhost:3131', '')));
+			await models.item.findByIdAndDelete(idFeature);
+			req.flash('allertMessage', 'Success add new feature in ' + getItem.title);
+			req.flash('alertStatus', 'success');
+			res.redirect('/admin/item/' + itemId + '#feature');
+		} catch (error) {
+			req.flash('allertMessage', `${error.message}`);
+			req.flash('alertStatus', 'danger');
+			res.redirect('/admin/item/');
+		}
+	},
+
+	// ACTIVITY 
+	addActivity: async function (req, res, next) {
+		try {
+			const { name, type } = req.body;
+			const { itemId } = req.params;
+			const getItem = await models.item.findById(itemId);
+			let imageUrl = '';
+			if (req.file) {
+				imageUrl = `${process.env.IMAGE_DOMAIN}/images/${req.file.filename}`;
+				await models.image.create({ imageUrl });
+			}
+			const saveActivity = await models.activity.create({
+				name,
+				type,
+				imageUrl,
+				itemId,
+				createdAt: Date.now(),
+				updatedAt: Date.now(),
+			});
+			getItem.activityId.push(saveActivity.id);
+			await getItem.save();
+			req.flash('allertMessage', 'Success add new activity in ' + getItem.title);
+			req.flash('alertStatus', 'success');
+			res.redirect('/admin/item/' + itemId + '#activity');
+		} catch (error) {
+			req.flash('allertMessage', `${error.message}`);
+			req.flash('alertStatus', 'danger');
+			res.redirect('/admin/item/');
+		}
+	},
+
+	editActivity: async function (req, res) {
+		try {
+			const { name, qty } = req.body;
+			const { idActivity } = req.params;
+			const getActivity = await models.item.findById(idActivity);
+			let imageUrl = getActivity.imageUrl;
+			if (req.file) {
+				imageUrl = `${process.env.IMAGE_DOMAIN}/images/${req.file.filename}`;
+				await fs.unlink(path.join('public/' + imageUrl.replace('http://localhost:3131', '')));
+				await models.image.create({ imageUrl });
+			}
+			getActivity.name = name;
+			getActivity.qty = qty;
+			getActivity.imageUrl = imageUrl;
+			getActivity.updatedAt = Date.now();
+			await getActivity.save();
+			req.flash('allertMessage', 'Success add new activity in ' + getItem.title);
+			req.flash('alertStatus', 'success');
+			res.redirect('/admin/item/' + itemId + '#activity');
+		} catch (error) {
+			req.flash('allertMessage', `${error.message}`);
+			req.flash('alertStatus', 'danger');
+			res.redirect('/admin/item/');
+		}
+	},
+
+	deleteActivity: async function (req, res) {
+		try {
+			const { idActivity } = req.params;
+			const { idItem } = req.body;
+			const getActivity = await models.item.findById(idItem);
+			let imageUrl = getActivity.imageUrl;
+			await fs.unlink(path.join('public/' + imageUrl.replace('http://localhost:3131', '')));
+			await models.item.findByIdAndDelete(idActivity);
+			req.flash('allertMessage', 'Success add new activity in ' + getItem.title);
+			req.flash('alertStatus', 'success');
+			res.redirect('/admin/item/' + itemId + '#activity');
 		} catch (error) {
 			req.flash('allertMessage', `${error.message}`);
 			req.flash('alertStatus', 'danger');
