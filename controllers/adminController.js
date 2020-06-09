@@ -3,6 +3,45 @@ const fs = require('fs-extra');
 const path = require('path');
 
 module.exports = {
+
+
+	signUp: function (req, res, next) {
+		try {
+			const alertMessage = req.flash('allertMessage');
+			const alertStatus = req.flash('alertStatus');
+			const alert = {
+				message: alertMessage,
+				status: alertStatus,
+			};
+			res.render('index', {
+				alert: alert
+			})
+		} catch (error) {
+			req.flash('allertMessage', `${error.message}`);
+			req.flash('alertStatus', 'danger');
+			res.redirect('/admin/sign-up');
+		}
+	},
+
+	signIn: function (req, res, next) {
+		try {
+			const alertMessage = req.flash('allertMessage');
+			const alertStatus = req.flash('alertStatus');
+			const alert = {
+				message: alertMessage,
+				status: alertStatus,
+			};
+			res.render('index', {
+				alert: alert,
+				title: "Sign In | Wellrafi"
+			})
+		} catch (error) {
+			req.flash('allertMessage', `${error.message}`);
+			req.flash('alertStatus', 'danger');
+			res.redirect('/admin/sign-in');
+		}
+	},
+
 	viewDashboard: function (req, res, next) {
 		res.render('admin/dashboard/view_dashboard', { title: 'Dashboard | Wellrafi' });
 	},
@@ -24,7 +63,8 @@ module.exports = {
 				title: 'Category | Wellrafi',
 			});
 		} catch (error) {
-			console.log(error);
+			req.flash('allertMessage', `${error.message}`);
+			req.flash('alertStatus', 'danger');
 			res.redirect('/admin/category');
 		}
 	},
