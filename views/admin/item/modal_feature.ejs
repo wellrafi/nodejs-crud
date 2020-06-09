@@ -41,21 +41,21 @@
 					<div class="form-group">
 						<label for="name">Image</label>
 						<br>
-						<button type="button" class="btn btn-primary" onclick="clickImageFeature()">
+						<button type="button" class="btn btn-primary" onclick="clickImageAddFeature()">
 							Choose image
 						</button>
 						<input 
 							style="display: none;"
 							type="file" 
 							class="form-control" 
-							id="imageFeature" 
+							id="imageAddFeature" 
 							name="image" 
 							placeholder="Enter image" 
 							required
 							/>
 						<script>
-							function clickImageFeature(){
-								let doc = document.getElementById('imageFeature');
+							function clickImageAddFeature(){
+								let doc = document.getElementById('imageAddFeature');
 								doc.click()
 							}
 						</script>
@@ -113,20 +113,20 @@
 					<div class="form-group">
 						<label for="name">Image</label>
 						<br>
-						<button type="button" class="btn btn-primary" onclick="clickImageFeature()">
+						<button type="button" class="btn btn-primary" onclick="clickImageEditFeature()">
 							Choose image
 						</button>
 						<input 
 							style="display: none;"
 							type="file" 
 							class="form-control" 
-							id="imageFeature" 
+							id="imageEditFeature" 
 							name="image" 
 							placeholder="Enter image" 
 							/>
 						<script>
-							function clickImageFeature(){
-								let doc = document.getElementById('imageFeature');
+							function clickImageEditFeature(){
+								let doc = document.getElementById('imageEditFeature');
 								doc.click()
 							}
 						</script>

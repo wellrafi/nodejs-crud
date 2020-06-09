@@ -494,7 +494,7 @@ module.exports = {
 			await getActivity.save();
 			req.flash('allertMessage', 'Success updated activity');
 			req.flash('alertStatus', 'success');
-			res.redirect('/admin/item/' + itemId + '#activity');
+			res.redirect('/admin/item/' + idItem + '#activity');
 		} catch (error) {
 			req.flash('allertMessage', `${error.message}`);
 			req.flash('alertStatus', 'danger');
