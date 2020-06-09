@@ -27,8 +27,8 @@ router.delete('/item/:idItem', uploadMultiple, adminController.deleteItem);
 // FEATURE routes
 router.get('/item/:idItem/feature', adminController.getFeature)
 router.post('/item/:idItem/feature', upload, adminController.addFeature);
-router.put('/item/:idItem/feature/:idFeature', upload, adminController.addFeature);
-router.delete('/item/:idItem/feature/:idFeature', adminController.addFeature);
+router.put('/item/:idItem/feature/:idFeature', upload, adminController.editFeature);
+router.delete('/item/:idItem/feature/:idFeature', adminController.deleteFeature);
 
 
 // BOOKING routes

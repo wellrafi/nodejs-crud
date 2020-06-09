@@ -360,7 +360,7 @@ module.exports = {
 				message: alertMessage,
 				status: alertStatus,
 			};
-			res.render('admin/feature/view_feature', {alert})
+			res.render('admin/feature/view_feature', { alert });
 		} catch (error) {
 			req.flash('allertMessage', `${error.message}`);
 			req.flash('alertStatus', 'danger');
@@ -370,8 +370,9 @@ module.exports = {
 
 	addFeature: async function (req, res, next) {
 		try {
-			const { itemId, name, qty } = req.body;
-			const getItem = await models.item.findById(itemId);
+			const { name, qty } = req.body;
+			const { idItem } = req.params;
+			const getItem = await models.item.findById(idItem);
 			let imageUrl = '';
 			if (req.file) {
 				imageUrl = `${process.env.IMAGE_DOMAIN}/images/${req.file.filename}`;
@@ -381,7 +382,7 @@ module.exports = {
 				name,
 				qty,
 				imageUrl,
-				itemId,
+				itemId: idItem,
 				createdAt: Date.now(),
 				updatedAt: Date.now(),
 			});
@@ -389,7 +390,7 @@ module.exports = {
 			await getItem.save();
 			req.flash('allertMessage', 'Success add new feature in ' + getItem.title);
 			req.flash('alertStatus', 'success');
-			res.redirect('/admin/item/' + itemId + '#feature');
+			res.redirect('/admin/item/' + idItem + '#feature');
 		} catch (error) {
 			req.flash('allertMessage', `${error.message}`);
 			req.flash('alertStatus', 'danger');
@@ -400,8 +401,8 @@ module.exports = {
 	editFeature: async function (req, res) {
 		try {
 			const { name, qty } = req.body;
-			const { idFeature } = req.params;
-			const getFeature = await models.item.findById(idFeature);
+			const { idFeature, idItem } = req.params;
+			const getFeature = await models.feature.findById(idFeature);
 			let imageUrl = getFeature.imageUrl;
 			if (req.file) {
 				imageUrl = `${process.env.IMAGE_DOMAIN}/images/${req.file.filename}`;
@@ -413,9 +414,9 @@ module.exports = {
 			getFeature.imageUrl = imageUrl;
 			getFeature.updatedAt = Date.now();
 			await getFeature.save();
-			req.flash('allertMessage', 'Success add new feature in ' + getItem.title);
+			req.flash('allertMessage', 'Success add new feature');
 			req.flash('alertStatus', 'success');
-			res.redirect('/admin/item/' + itemId + '#feature');
+			res.redirect('/admin/item/' + idItem + '#feature');
 		} catch (error) {
 			req.flash('allertMessage', `${error.message}`);
 			req.flash('alertStatus', 'danger');
@@ -425,12 +426,14 @@ module.exports = {
 
 	deleteFeature: async function (req, res) {
 		try {
-			const { idFeature } = req.params;
-			const { idItem } = req.body;
-			const getFeature = await models.item.findById(idItem);
+			const { idItem, idFeature } = req.params;
+			const getFeature = await models.feature.findById(idFeature);
+			const getItem = await models.item.findById(idItem);
 			let imageUrl = getFeature.imageUrl;
+			getItem.idFeature = getFeature.idFeature.filter(value => value !== idFeature);
+			getItem.save();
 			await fs.unlink(path.join('public/' + imageUrl.replace('http://localhost:3131', '')));
-			await models.item.findByIdAndDelete(idFeature);
+			await getFeature.delete();
 			req.flash('allertMessage', 'Success add new feature in ' + getItem.title);
 			req.flash('alertStatus', 'success');
 			res.redirect('/admin/item/' + itemId + '#feature');
@@ -441,7 +444,7 @@ module.exports = {
 		}
 	},
 
-	// ACTIVITY 
+	// ACTIVITY
 	addActivity: async function (req, res, next) {
 		try {
 			const { name, type } = req.body;

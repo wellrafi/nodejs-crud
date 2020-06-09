@@ -28,7 +28,7 @@
 							<td><%= item.featureId[i].qty %></td>
 							<td><img src="<%= item.featureId[i].imageUrl%>" height="50" alt=""></td>
 							<td>
-								<form action="/admin/feature/<%= item.featureId[i].id %>?_method=DELETE" method="POST">
+								<form action="/admin/item/<%= item.id %>/feature/<%= item.featureId[i].id %>?_method=DELETE" method="POST">
 									<button
 										type="button"
 										class="btn btn-icon btn-info btn-circle btn-sm btn-update-feature"

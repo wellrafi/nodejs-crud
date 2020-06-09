@@ -77,6 +77,7 @@
 		<%- include('../../partials/footer.ejs') %>
 	</div>
 	<!-- End of Content Wrapper -->
+	<input type="hidden" id="itemIdToScript" value="<%= item.id %>">
 </div>
 <!-- End of Page Wrapper -->
 
@@ -114,6 +115,7 @@
 <%- include('../../partials/js.ejs') %>
 
 <script>
+	let itemId = document.getElementById('itemIdToScript').value;
 	CKEDITOR.replace('description');
 	$(document).ready(function () {
 		$('table.dataTable').DataTable();
@@ -123,7 +125,7 @@
 			let qty = $(this).data('qty');
 			$('#edit-modal-feature-name').val(name);
 			$('#edit-modal-feature-qty').val(qty);
-			$('#edit-modal-feature-form').attr("action", "/admin/item/" + id + "/feature?_method=PUT");
+			$('#edit-modal-feature-form').attr("action", "/admin/item/" + itemId + "/feature/" + id +  "?_method=PUT");
 		})
 		$(".dataTable").on('click', '.btn-update-activity', function () {
 			let id = $(this).data('id');
@@ -131,7 +133,7 @@
 			let type = $(this).data('type');
 			$('#edit-modal-activity-name').val(name);
 			$('#edit-modal-activity-type').val(type);
-			$('#edit-modal-activity-form').attr("action", "/admin/item/" + id + "/activity?_method=PUT");
+			$('#edit-modal-activity-form').attr("action", "/admin/item/" + itemId + "/activity/"+ id +"?_method=PUT");
 		})
 	});
 	window.onload = function () {
