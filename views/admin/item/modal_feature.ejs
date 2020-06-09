@@ -51,7 +51,8 @@
 							id="imageFeature" 
 							name="image" 
 							placeholder="Enter image" 
-						/>
+							required
+							/>
 						<script>
 							function clickImageFeature(){
 								let doc = document.getElementById('imageFeature');
@@ -85,7 +86,7 @@
 					<span aria-hidden="true">&times;</span>
 				</button>
 			</div>
-			<form id="edit-modal-feature-form" action="" method="POST">
+			<form id="edit-modal-feature-form" action="" method="POST" enctype="multipart/form-data">
 				<div class="modal-body">
 					<div class="form-group">
 						<label for="name">Name</label>
@@ -122,7 +123,7 @@
 							id="imageFeature" 
 							name="image" 
 							placeholder="Enter image" 
-						/>
+							/>
 						<script>
 							function clickImageFeature(){
 								let doc = document.getElementById('imageFeature');

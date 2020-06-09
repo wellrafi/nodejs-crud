@@ -264,7 +264,8 @@ module.exports = {
 			const getItem = await models.item
 				.findById(idItem)
 				.populate({ path: 'imageId', select: 'id imageUrl' })
-				.populate({ path: 'featureId', select: 'id name qty imageUrl' });
+				.populate({ path: 'featureId', select: 'id name qty imageUrl' })
+				.populate({ path: 'activityId', select: 'id name type imageUrl' });
 			const category = await models.category.find({});
 			const alertMessage = req.flash('allertMessage');
 			const alertStatus = req.flash('alertStatus');
@@ -427,16 +428,16 @@ module.exports = {
 	deleteFeature: async function (req, res) {
 		try {
 			const { idItem, idFeature } = req.params;
-			const getFeature = await models.feature.findById(idFeature);
 			const getItem = await models.item.findById(idItem);
+			const getFeature = await models.feature.findById(idFeature);
 			let imageUrl = getFeature.imageUrl;
-			getItem.idFeature = getFeature.idFeature.filter(value => value !== idFeature);
+			getItem.idFeature = getItem.featureId.filter(value => value !== idFeature);
 			getItem.save();
-			await fs.unlink(path.join('public/' + imageUrl.replace('http://localhost:3131', '')));
+			await fs.unlink(path.join('public/' + imageUrl.replace('http://localhost:3131', '')));			if (!deleteImage) 
 			await getFeature.delete();
 			req.flash('allertMessage', 'Success add new feature in ' + getItem.title);
 			req.flash('alertStatus', 'success');
-			res.redirect('/admin/item/' + itemId + '#feature');
+			res.redirect('/admin/item/' + idItem + '#feature');
 		} catch (error) {
 			req.flash('allertMessage', `${error.message}`);
 			req.flash('alertStatus', 'danger');
@@ -448,8 +449,8 @@ module.exports = {
 	addActivity: async function (req, res, next) {
 		try {
 			const { name, type } = req.body;
-			const { itemId } = req.params;
-			const getItem = await models.item.findById(itemId);
+			const { idItem } = req.params;
+			const getItem = await models.item.findById(idItem);
 			let imageUrl = '';
 			if (req.file) {
 				imageUrl = `${process.env.IMAGE_DOMAIN}/images/${req.file.filename}`;
@@ -459,7 +460,7 @@ module.exports = {
 				name,
 				type,
 				imageUrl,
-				itemId,
+				itemId: idItem,
 				createdAt: Date.now(),
 				updatedAt: Date.now(),
 			});
@@ -467,7 +468,7 @@ module.exports = {
 			await getItem.save();
 			req.flash('allertMessage', 'Success add new activity in ' + getItem.title);
 			req.flash('alertStatus', 'success');
-			res.redirect('/admin/item/' + itemId + '#activity');
+			res.redirect('/admin/item/' + idItem + '#activity');
 		} catch (error) {
 			req.flash('allertMessage', `${error.message}`);
 			req.flash('alertStatus', 'danger');
@@ -477,9 +478,9 @@ module.exports = {
 
 	editActivity: async function (req, res) {
 		try {
-			const { name, qty } = req.body;
+			const { name, type } = req.body;
 			const { idActivity } = req.params;
-			const getActivity = await models.item.findById(idActivity);
+			const getActivity = await models.activity.findById(idActivity);
 			let imageUrl = getActivity.imageUrl;
 			if (req.file) {
 				imageUrl = `${process.env.IMAGE_DOMAIN}/images/${req.file.filename}`;
@@ -487,11 +488,11 @@ module.exports = {
 				await models.image.create({ imageUrl });
 			}
 			getActivity.name = name;
-			getActivity.qty = qty;
+			getActivity.type = type;
 			getActivity.imageUrl = imageUrl;
 			getActivity.updatedAt = Date.now();
 			await getActivity.save();
-			req.flash('allertMessage', 'Success add new activity in ' + getItem.title);
+			req.flash('allertMessage', 'Success updated activity');
 			req.flash('alertStatus', 'success');
 			res.redirect('/admin/item/' + itemId + '#activity');
 		} catch (error) {
@@ -503,15 +504,17 @@ module.exports = {
 
 	deleteActivity: async function (req, res) {
 		try {
-			const { idActivity } = req.params;
-			const { idItem } = req.body;
-			const getActivity = await models.item.findById(idItem);
+			const { idActivity, idItem } = req.params;
+			const getActivity = await models.activity.findById(idActivity);
+			const getItem = await models.item.findById(idItem);
 			let imageUrl = getActivity.imageUrl;
+			getItem.idFeature = getItem.activityId.filter(value => value !== idActivity);
+			getItem.save();
 			await fs.unlink(path.join('public/' + imageUrl.replace('http://localhost:3131', '')));
-			await models.item.findByIdAndDelete(idActivity);
+			await getActivity.delete();
 			req.flash('allertMessage', 'Success add new activity in ' + getItem.title);
 			req.flash('alertStatus', 'success');
-			res.redirect('/admin/item/' + itemId + '#activity');
+			res.redirect('/admin/item/' + idItem + '#activity');
 		} catch (error) {
 			req.flash('allertMessage', `${error.message}`);
 			req.flash('alertStatus', 'danger');

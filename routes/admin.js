@@ -30,6 +30,11 @@ router.post('/item/:idItem/feature', upload, adminController.addFeature);
 router.put('/item/:idItem/feature/:idFeature', upload, adminController.editFeature);
 router.delete('/item/:idItem/feature/:idFeature', adminController.deleteFeature);
 
+// ACTIVITY routes
+// router.get('/item/:idItem/feature', adminController.getActivity);
+router.post('/item/:idItem/activity', upload, adminController.addActivity);
+router.put('/item/:idItem/activity/:idActivity', upload, adminController.editActivity);
+router.delete('/item/:idItem/activity/:idActivity', adminController.deleteActivity);
 
 // BOOKING routes
 router.get('/booking', adminController.viewBooking);
