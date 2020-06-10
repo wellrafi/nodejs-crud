@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const Schema = mongoose.Schema;
 
-let memberSchema = Schema({
+let userSchema = Schema({
 	username: {
 		type: String,
 		required: true,
@@ -19,13 +19,13 @@ let memberSchema = Schema({
 	}
 });
 
-memberSchema.pre('save', async function (next) {
-	const user = this;
-	if (user.isModified(password)) {
-		user.password = await bcrypt.hash(user.password, 12);
-	}
+userSchema.pre('save', async function (next) {
+  const user = this;
+  if (user.isModified('password')) {
+    user.password = await bcrypt.hash(user.password, 12);
+  }
 })
 
-const model = mongoose.model('Member', memberSchema);
+const model = mongoose.model('Users', userSchema);
 
 module.exports = model;

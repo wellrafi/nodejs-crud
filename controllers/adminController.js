@@ -1,11 +1,10 @@
 const models = require('../models/index');
 const fs = require('fs-extra');
 const path = require('path');
+const bcrypt = require('bcrypt');
 
 module.exports = {
-
-
-	signUp: function (req, res, next) {
+	signUp: async function (req, res, next) {
 		try {
 			const alertMessage = req.flash('allertMessage');
 			const alertStatus = req.flash('alertStatus');
@@ -13,10 +12,15 @@ module.exports = {
 				message: alertMessage,
 				status: alertStatus,
 			};
+
+			if (req.session.user != null || req.session.user != undefined) {
+				return res.redirect('/admin/dashboard');
+			}
+
 			res.render('auth/signup', {
 				alert: alert,
-				title: "Sign Up | Wellrafi"
-			})
+				title: 'Sign Up | Wellrafi',
+			});
 		} catch (error) {
 			req.flash('allertMessage', `${error.message}`);
 			req.flash('alertStatus', 'danger');
@@ -24,7 +28,24 @@ module.exports = {
 		}
 	},
 
-	signIn: function (req, res, next) {
+	signUpPost: async function (req, res, next) {
+		try {
+			const { username, password } = req.body;
+			await models.user.create({
+				username,
+				password,
+			});
+			req.flash('allertMessage', 'Success create new user');
+			req.flash('alertStatus', 'success');
+			res.redirect('/admin/signin');
+		} catch (error) {
+			req.flash('allertMessage', `${error.message}`);
+			req.flash('alertStatus', 'danger');
+			res.redirect('/admin/signup');
+		}
+	},
+
+	signIn: async function (req, res, next) {
 		try {
 			const alertMessage = req.flash('allertMessage');
 			const alertStatus = req.flash('alertStatus');
@@ -32,14 +53,52 @@ module.exports = {
 				message: alertMessage,
 				status: alertStatus,
 			};
+
+			console.log(req.session);
+
+			if (req.session.user != null || req.session.user != undefined) {
+				return res.redirect('/admin/dashboard');
+			}
+
 			res.render('auth/login', {
 				alert: alert,
-				title: "Sign In | Wellrafi"
-			})
+				title: 'Sign In | Wellrafi',
+			});
 		} catch (error) {
 			req.flash('allertMessage', `${error.message}`);
 			req.flash('alertStatus', 'danger');
 			res.redirect('/admin/sign-in');
+		}
+	},
+
+	signInPost: async function (req, res, next) {
+		try {
+			const { username, password } = req.body;
+			let getUser = await models.user.findOne({ username });
+			if (!getUser) {
+				req.flash('allertMessage', `Username or Password not valid`);
+				req.flash('alertStatus', 'danger');
+				return res.redirect('/admin/signin');
+			}
+			const compare = await bcrypt.compare(password, getUser.password);
+			if (!compare) {
+				req.flash('allertMessage', `Username or Password not valid`);
+				req.flash('alertStatus', 'danger');
+				return res.redirect('/admin/signin');
+			}
+
+			let sess = {
+				id: getUser.id,
+				username: getUser.username,
+			};
+
+			req.session.user = sess;
+
+			res.redirect('/admin/dashboard');
+		} catch (error) {
+			req.flash('allertMessage', `${error.message}`);
+			req.flash('alertStatus', 'danger');
+			res.redirect('/admin/signin');
 		}
 	},
 
@@ -472,10 +531,10 @@ module.exports = {
 			const getItem = await models.item.findById(idItem);
 			const getFeature = await models.feature.findById(idFeature);
 			let imageUrl = getFeature.imageUrl;
-			getItem.idFeature = getItem.featureId.filter(value => value !== idFeature);
+			getItem.idFeature = getItem.featureId.filter((value) => value !== idFeature);
 			getItem.save();
-			await fs.unlink(path.join('public/' + imageUrl.replace('http://localhost:3131', '')));			if (!deleteImage) 
-			await getFeature.delete();
+			await fs.unlink(path.join('public/' + imageUrl.replace('http://localhost:3131', '')));
+			if (!deleteImage) await getFeature.delete();
 			req.flash('allertMessage', 'Success add new feature in ' + getItem.title);
 			req.flash('alertStatus', 'success');
 			res.redirect('/admin/item/' + idItem + '#feature');
@@ -549,7 +608,7 @@ module.exports = {
 			const getActivity = await models.activity.findById(idActivity);
 			const getItem = await models.item.findById(idItem);
 			let imageUrl = getActivity.imageUrl;
-			getItem.idFeature = getItem.activityId.filter(value => value !== idActivity);
+			getItem.idFeature = getItem.activityId.filter((value) => value !== idActivity);
 			getItem.save();
 			await fs.unlink(path.join('public/' + imageUrl.replace('http://localhost:3131', '')));
 			await getActivity.delete();

@@ -1,12 +1,19 @@
 const router = require('express').Router();
 const adminController = require('../controllers/adminController');
-const { upload, uploadMultiple} = require('../middlewares/multer');
+const { upload, uploadMultiple } = require('../middlewares/multer');
+const auth = require('../middlewares/auth');
 
-router.get('/sign-in', adminController.signIn);
-router.get('/sign-up', adminController.signUp);
+router.get('/signin', adminController.signIn);
+router.get('/signup', adminController.signUp);
+router.post('/signup', adminController.signUpPost);
+router.post('/signin', adminController.signInPost);
 
-// router.use();
+router.use(auth);
 
+router.get('/logout', function (req, res) {
+  req.session.destroy();
+  res.redirect('/admin/signin')
+})
 router.get('/dashboard', adminController.viewDashboard);
 
 // CATEGORY routes
@@ -30,7 +37,7 @@ router.put('/item/:idItem', uploadMultiple, adminController.updateItem);
 router.delete('/item/:idItem', uploadMultiple, adminController.deleteItem);
 
 // FEATURE routes
-router.get('/item/:idItem/feature', adminController.getFeature)
+router.get('/item/:idItem/feature', adminController.getFeature);
 router.post('/item/:idItem/feature', upload, adminController.addFeature);
 router.put('/item/:idItem/feature/:idFeature', upload, adminController.editFeature);
 router.delete('/item/:idItem/feature/:idFeature', adminController.deleteFeature);
