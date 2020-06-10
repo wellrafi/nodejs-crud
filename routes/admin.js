@@ -5,6 +5,8 @@ const { upload, uploadMultiple} = require('../middlewares/multer');
 router.get('/sign-in', adminController.signIn);
 router.get('/sign-up', adminController.signUp);
 
+// router.use();
+
 router.get('/dashboard', adminController.viewDashboard);
 
 // CATEGORY routes

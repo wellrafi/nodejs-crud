@@ -13,8 +13,9 @@ module.exports = {
 				message: alertMessage,
 				status: alertStatus,
 			};
-			res.render('index', {
-				alert: alert
+			res.render('auth/signup', {
+				alert: alert,
+				title: "Sign Up | Wellrafi"
 			})
 		} catch (error) {
 			req.flash('allertMessage', `${error.message}`);
@@ -31,7 +32,7 @@ module.exports = {
 				message: alertMessage,
 				status: alertStatus,
 			};
-			res.render('index', {
+			res.render('auth/login', {
 				alert: alert,
 				title: "Sign In | Wellrafi"
 			})
