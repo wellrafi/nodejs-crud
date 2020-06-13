@@ -225,7 +225,16 @@ module.exports = {
 	},
 
 	addBank: async function (req, res, next) {
-
+		const { nameBank, nomorRekening, name } = req.body;
+		await models.bank.create({
+			nameBank,
+			nomorRekening,
+			name,
+			imageUrl: `http://localhost:3131/images/${req.files[0].filename}`,
+		});
+		req.flash('allertMessage', 'Success updated bank');
+		req.flash('alertStatus', 'success');
+		res.redirect('/admin/bank');
 	},
 
 	editBank: async function (req, res, next) {

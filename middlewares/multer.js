@@ -24,6 +24,14 @@ const uploadMultiple = multer({
   }
 }).array("image", 12);
 
+const uploadMultipleAPI = multer({
+  storage: storageMultiple,
+  limits: { fileSize: 1000000 },
+  fileFilter: function (req, file, cb) {
+    checkFileType(file, cb);
+  }
+})
+
 
 // Set storage engine
 const storage = multer.diskStorage({
@@ -40,6 +48,8 @@ const upload = multer({
     checkFileType(file, cb);
   }
 }).single("image");
+
+const none = multer().none()
 
 // // Check file Type
 function checkFileType(file, cb) {
@@ -58,4 +68,4 @@ function checkFileType(file, cb) {
   }
 }
 
-module.exports = { uploadMultiple, upload };
+module.exports = { uploadMultiple, upload, none, uploadMultipleAPI };
