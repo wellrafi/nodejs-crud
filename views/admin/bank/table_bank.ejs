@@ -8,7 +8,7 @@
 	</div>
 	<div class="card-body">
 		<div class="table-responsive">
-			<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+			<table class="table" id="dataTable" width="100%" cellspacing="0">
 				<thead>
 					<tr>
 						<th style="width: 30px;">No</th>
@@ -24,14 +24,11 @@
 					<tr>
 						<td><%= i + 1 %></td>
 						<td><%= bank[i].nameBank %></td>
-						<td><img src="<%= bank[i].imageUrl %>" height="30" alt=""></td>
+						<td><img src="<%= bank[i].imageUrl %>" height="30" alt="" /></td>
 						<td><%= bank[i].nomorRekening %></td>
 						<td><%= bank[i].name %></td>
 						<td>
-							<form
-								action="/admin/bank/<%= bank[i].id %>?_method=DELETE"
-								method="POST"
-							>
+							<form action="" method="POST">
 								<button
 									type="button"
 									class="btn btn-icon btn-warning btn-circle btn-sm btn-update-bank"
@@ -44,7 +41,14 @@
 								>
 									<i class="fas fa-edit"></i>
 								</button>
-								<button type="submit" class="btn btn-icon btn-danger btn-circle btn-sm">
+
+								<button
+									type="button"
+									class="btn btn-icon btn-danger btn-circle btn-sm btn-delete-bank"
+									data-toggle="modal"
+									data-target="#delete-modal-bank"
+									data-id="<%= bank[i].id %>"
+								>
 									<i class="fas fa-trash"></i>
 								</button>
 							</form>

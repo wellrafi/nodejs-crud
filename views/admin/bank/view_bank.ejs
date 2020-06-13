@@ -57,4 +57,9 @@
     $('#edit-modal-bank-nomor-rekening').val(nomor_rekening);
     $('#edit-modal-bank-form').attr("action", "/admin/bank/" + id + "?_method=PUT");
   })
+
+  $("#dataTable").on('click', '.btn-delete-bank', function () {
+    let id = $(this).data('id');
+    $('#delete-modal-bank-form').attr("action", "/admin/bank/" + id + "?_method=DELETE");
+  })
 </script>

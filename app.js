@@ -32,14 +32,14 @@ app.use(
 		secret: 'keyboard cat',
 		resave: false,
 		saveUninitialized: true,
-		// cookie: { maxAge: 6000 * 60 * 10 },
+		// cookie: { maxAge: 6000 * 60 * 10 * 10},
 	})
 );
 app.use(flash());
 app.use(methodOverride('_method'));
 app.use(logger('dev'));
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/sb-admin-2', express.static(path.join(__dirname, 'node_modules/startbootstrap-sb-admin-2')));

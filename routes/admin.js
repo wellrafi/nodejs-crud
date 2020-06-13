@@ -8,7 +8,7 @@ router.get('/signup', adminController.signUp);
 router.post('/signup', adminController.signUpPost);
 router.post('/signin', adminController.signInPost);
 
-router.use(auth);
+// router.use(auth);
 
 router.get('/logout', function (req, res) {
   req.session.destroy();

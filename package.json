@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "DEBUG=express-session nodemon ./bin/www"
+    "start": "nodemon ./bin/www",
+    "test": "jest"
   },
   "dependencies": {
     "bcrypt": "^5.0.0",
@@ -17,11 +18,15 @@
     "express-session": "^1.17.1",
     "fs-extra": "^9.0.1",
     "http-errors": "~1.6.3",
+    "jsonwebtoken": "^8.5.1",
     "method-override": "^3.0.0",
     "mongoose": "^5.9.16",
     "morgan": "~1.9.1",
     "multer": "^1.4.2",
+    "nodemailer": "^6.4.8",
+    "passport": "^0.4.1",
     "startbootstrap-sb-admin-2": "^4.0.7",
+    "uuid": "^8.1.0",
     "validator": "^13.0.0"
   },
   "devDependencies": {

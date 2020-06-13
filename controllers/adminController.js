@@ -3,6 +3,26 @@ const fs = require('fs-extra');
 const path = require('path');
 const bcrypt = require('bcrypt');
 
+async function checkTersedia(req, listArray){
+	let bodies = listArray;
+	let errors = [];
+	bodies.forEach( value => {
+		let error = {}
+		if (!req.body[value]) {
+			error.name = value;
+			error.error = value + " tidak ditemukan"
+			errors.push(error)
+		}
+	});
+	// if (!req.file.image) {
+	// 	let error = {}
+	// 	error.name = "image";
+	// 	error.error = "image tidak ditemukan"
+	// 	errors.push(error)
+	// }
+	return errors;
+}
+
 module.exports = {
 	signUp: async function (req, res, next) {
 		try {
@@ -205,23 +225,7 @@ module.exports = {
 	},
 
 	addBank: async function (req, res, next) {
-		try {
-			const { nameBank, nomorRekening, name } = req.body;
-			const saved = await models.bank.create({
-				nameBank,
-				nomorRekening,
-				name,
-				imageUrl: `http://localhost:3131/images/${req.file.filename}`,
-			});
-			if (!saved) return console.log('error');
-			req.flash('allertMessage', 'Success add new bank');
-			req.flash('alertStatus', 'success');
-			res.redirect('/admin/bank');
-		} catch (error) {
-			req.flash('allertMessage', `${error.message}`);
-			req.flash('alertStatus', 'danger');
-			res.redirect('/admin/bank');
-		}
+
 	},
 
 	editBank: async function (req, res, next) {
@@ -230,11 +234,12 @@ module.exports = {
 			const { nameBank, nomorRekening, name } = req.body;
 			let bankData = await models.bank.findById(bankId);
 			let fileName = bankData.imageUrl;
-			console.log(req.file);
 			if (req.file) {
-				fs.unlink(path.join('public/' + del.imageUrl.replace('http://localhost:3131', '')));
+				const exist = await fs.exists(path.join('public/' + bankData.imageUrl.replace('http://localhost:3131', '')));
+				if (exist) {
+					await fs.unlink(path.join('public/' + bankData.imageUrl.replace('http://localhost:3131', '')));
+				}
 				fileName = `http://localhost:3131/images/${req.file.filename}`;
-				console.log(req.file);
 			}
 			bankData.nameBank = nameBank;
 			bankData.nomorRekening = nomorRekening;
@@ -255,7 +260,10 @@ module.exports = {
 		try {
 			const { bankId } = req.params;
 			const del = await models.bank.findById(bankId);
-			await fs.unlink(path.join('public/' + del.imageUrl.replace('http://localhost:3131', '')));
+			const fileExist = await fs.exists(path.join('public/' + del.imageUrl.replace('http://localhost:3131', '')));
+			if (fileExist) {
+				await fs.unlink(path.join('public/' + del.imageUrl.replace('http://localhost:3131', '')));
+			}
 			await del.remove();
 			req.flash('allertMessage', 'Success delete bank');
 			req.flash('alertStatus', 'success');
@@ -626,3 +634,4 @@ module.exports = {
 		res.render('admin/booking/view_booking', { title: 'Booking | Wellrafi' });
 	},
 };
+
