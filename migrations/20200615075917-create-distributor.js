@@ -1,25 +1,25 @@
 'use strict';
 module.exports = {
 	up: (queryInterface, Sequelize) => {
-		return queryInterface.createTable('Akses', {
+		return queryInterface.createTable('Distributors', {
 			id: {
 				allowNull: false,
+				autoIncrement: true,
 				primaryKey: true,
-				type: Sequelize.UUID,
+				type: Sequelize.INTEGER,
 			},
-			nama: {
+			name: {
 				type: Sequelize.STRING,
-				allowNull: false,
 			},
-			akses: {
-				type: Sequelize.TINYINT,
-				allowNull: false,
-				defaultValue: 0,
-			},
-			hapus: {
-				type: Sequelize.BOOLEAN,
-				allowNull: false,
-				defaultValue: false,
+			katDistId: {
+				type: Sequelize.UUID,
+				allowNull: true,
+				references: {
+					model: 'KatDist',
+					key: 'id',
+				},
+				onDelete: 'SET NULL',
+				onUpdate: 'CASCADE',
 			},
 			createdAt: {
 				allowNull: false,
@@ -34,6 +34,6 @@ module.exports = {
 		});
 	},
 	down: (queryInterface, Sequelize) => {
-		return queryInterface.dropTable('Akses');
+		return queryInterface.dropTable('Distributors');
 	},
 };
