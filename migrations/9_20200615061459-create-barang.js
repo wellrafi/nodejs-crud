@@ -10,6 +10,11 @@ module.exports = {
 			},
 			kode: {
 				type: Sequelize.STRING,
+				allowNull: false
+			},
+			kodeScan: {
+				type: Sequelize.DOUBLE,
+				allowNull: true,
 			},
 			nama: {
 				type: Sequelize.STRING,
@@ -56,6 +61,26 @@ module.exports = {
 				allowNull: true,
 				references: {
 					model: 'Produsen',
+					key: 'id',
+				},
+				onDelete: 'SET NULL',
+				onUpdate: 'CASCADE',
+			},
+			gudangId: {
+				type: Sequelize.UUID,
+				allowNull: true,
+				references: {
+					model: 'Produsen',
+					key: 'id',
+				},
+				onDelete: 'SET NULL',
+				onUpdate: 'CASCADE',
+			},
+			pelekoId: {
+				type: Sequelize.UUID,
+				allowNull: true,
+				references: {
+					model: 'Peleko',
 					key: 'id',
 				},
 				onDelete: 'SET NULL',

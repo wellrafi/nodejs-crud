@@ -1,31 +1,21 @@
 'use strict';
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('Produsens', {
+    return queryInterface.createTable('Gudangs', {
       id: {
         allowNull: false,
+        autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.UUID
-        defaultValue: Sequelize.UUID,
+        type: Sequelize.INTEGER
       },
-      kode: {
+      name: {
+        type: Sequelize.STRING
+      },
+      lonTd: {
         type: Sequelize.STRING,
-        allowNull: false
       },
-      nama: {
+      latTd: {
         type: Sequelize.STRING,
-        allowNull: false,
-      },
-      alamat: {
-        type: Sequelize.TEXT,
-        allowNull: true,
-      },
-      noTelp: {
-        type: Sequelize.STRING,
-        allowNull: true,
-      },
-      hapus: {
-        type: Sequelize.BOOLEAN
       },
       createdAt: {
         allowNull: false,
@@ -38,6 +28,6 @@ module.exports = {
     });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('Produsens');
+    return queryInterface.dropTable('Gudangs');
   }
 };
