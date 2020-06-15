@@ -6,6 +6,7 @@ module.exports = {
         primaryKey: true,
         allowNull: false,
         type: Sequelize.UUID
+        defaultValue: Sequelize.UUID,
       },
       namaBank: {
         type: Sequelize.STRING,
@@ -27,6 +28,9 @@ module.exports = {
         },
         onDelete: "SET NULL",
         onUpdate: "CASCADE"
+      },
+      hapus: {
+        type: Sequelize.BOOLEAN
       },
       createdAt: {
         allowNull: false,

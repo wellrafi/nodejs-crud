@@ -6,6 +6,7 @@ module.exports = {
         allowNull: false,
         primaryKey: true,
         type: Sequelize.UUID
+        defaultValue: Sequelize.UUID,
       },
       kode: {
         type: Sequelize.STRING,
@@ -22,6 +23,9 @@ module.exports = {
       noTelp: {
         type: Sequelize.STRING,
         allowNull: true,
+      },
+      hapus: {
+        type: Sequelize.BOOLEAN
       },
       createdAt: {
         allowNull: false,
