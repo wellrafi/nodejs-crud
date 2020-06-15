@@ -11,6 +11,7 @@ router.get('/', function (req, res, next) {
 router.post('/', async function (req, res, next) {
 	const response = await bankPost(req, res)
 	console.log(response);
-})
+});
 
 module.exports = router;
+
