@@ -26,7 +26,7 @@ module.exports = {
 			},
 			negara: {
 				type: Sequelize.STRING,
-				defaultValue: "Indonesia",
+				defaultValue: 'Indonesia',
 				allowNull: true,
 			},
 			kodePos: {
@@ -36,52 +36,51 @@ module.exports = {
 			alamat: {
 				type: Sequelize.TEXT,
 				allowNull: true,
-      },
-      lonTd: {
+			},
+			lonTd: {
 				type: Sequelize.STRING,
 				allowNull: true,
-				
-      },
-      latTd: {
+			},
+			latTd: {
 				type: Sequelize.STRING,
 				allowNull: true,
-      },
-      nomorTelepon: {
-        type: Sequelize.STRING,
+			},
+			nomorTelepon: {
+				type: Sequelize.STRING,
 				allowNull: true,
 				defaultValue: true,
-      },
+			},
 			fotoProfilUrl: {
 				type: Sequelize.STRING,
 				allowNull: true,
 				defaultValue: true,
+			},
+			userId: {
+				type: Sequelize.UUID,
+				references: {
+					model: 'User',
+					key: 'id',
+				},
+				onDelete: 'SET NULL',
+				onUpdate: 'CASCADE',
 			},
 			jenisId: {
 				type: Sequelize.UUID,
 				references: {
 					model: 'JenisPeleko',
 					key: 'id',
-        },
-        onDelete: 'SET NULL',
+				},
+				onDelete: 'SET NULL',
 				onUpdate: 'CASCADE',
-      },
-      userId: {
+			},
+			gudangId: {
 				type: Sequelize.UUID,
-				references: {
-					model: 'User',
-					key: 'id',
-        },
-        onDelete: 'SET NULL',
-				onUpdate: 'CASCADE',
-      },
-      gudangId: {
-        type: Sequelize.UUID,
-        allowNull: true,
+				allowNull: true,
 				references: {
 					model: 'Gudang',
 					key: 'id',
-        },
-        onDelete: 'SET NULL',
+				},
+				onDelete: 'SET NULL',
 				onUpdate: 'CASCADE',
 			},
 			aktif: {

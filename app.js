@@ -6,15 +6,8 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var methodOverride = require('method-override');
 var cors = require('cors');
-var mongoose = require('mongoose');
 const flash = require('connect-flash');
 const session = require('express-session');
-mongoose.connect(process.env.MONGODB_URL, {
-	useFindAndModify: true,
-	useCreateIndex: true,
-	useUnifiedTopology: true,
-	useNewUrlParser: true,
-});
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -44,9 +37,9 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/sb-admin-2', express.static(path.join(__dirname, 'node_modules/startbootstrap-sb-admin-2')));
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
-app.use('/admin', adminRouter);
+// app.use('/', indexRouter);
+// app.use('/users', usersRouter);
+// app.use('/admin', adminRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

@@ -6,35 +6,35 @@ module.exports = (sequelize, DataTypes) => {
 			id: {
 				primaryKey: true,
 				allowNull: false,
-				type: Sequelize.UUID,
-				defaultValue: Sequelize.UUID,
+				type: DataTypes.UUID,
+				defaultValue: sequelize.UUID,
 			},
 			namaBank: {
-				type: Sequelize.STRING,
+				type: DataTypes.STRING,
 				allowNull: false,
 			},
 			nomorRekening: {
-				type: Sequelize.STRING,
+				type: DataTypes.STRING,
 				allowNull: false,
 			},
 			namaPemilik: {
-				type: Sequelize.STRING,
+				type: DataTypes.STRING,
 				allowNull: false,
 			},
 			userId: {
-				type: Sequelize.UUID,
+				type: DataTypes.UUID,
 				allowNull: false,
 			},
 			hapus: {
-				type: Sequelize.BOOLEAN,
+				type: DataTypes.BOOLEAN,
 			},
 			createdAt: {
 				allowNull: false,
-				type: Sequelize.DATE,
+				type: DataTypes.DATE,
 			},
 			updatedAt: {
 				allowNull: false,
-				type: Sequelize.DATE,
+				type: DataTypes.DATE,
 			},
 		},
 		{}
