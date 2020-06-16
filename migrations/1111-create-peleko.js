@@ -1,4 +1,5 @@
 'use strict';
+const kodePeleko = "GD" + Math.floor((Math.random() * 999) * 999);
 module.exports = {
 	up: (queryInterface, Sequelize) => {
 		return queryInterface.createTable('Pelekos', {
@@ -7,6 +8,11 @@ module.exports = {
 				primaryKey: true,
 				type: Sequelize.UUID,
 				defaultValue: Sequelize.UUID,
+			},
+			kodePeleko: {
+				type: Sequelize.STRING,
+				allowNull: false,
+				defaultValue: kodePeleko
 			},
 			namaPeleko: {
 				type: Sequelize.STRING,
@@ -23,6 +29,10 @@ module.exports = {
 			kota: {
 				type: Sequelize.STRING,
 				allowNull: true,
+			},
+			provinsi: {
+				type: Sequelize.STRING,
+				allowNull: true
 			},
 			negara: {
 				type: Sequelize.STRING,

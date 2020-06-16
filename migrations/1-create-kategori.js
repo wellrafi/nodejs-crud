@@ -10,10 +10,13 @@ module.exports = {
 			},
 			nama: {
 				type: Sequelize.STRING,
-				allowNull: true,
+				allowNull: false,
+				defaultValue: "Tanpa Nama"
 			},
 			hapus: {
 				type: Sequelize.BOOLEAN,
+				allowNull: false,
+				defaultValue: false
 			},
 			createdAt: {
 				allowNull: false,
