@@ -58,7 +58,7 @@ module.exports = {
 			userId: {
 				type: Sequelize.UUID,
 				references: {
-					model: 'User',
+					model: 'Users',
 					key: 'id',
 				},
 				onDelete: 'SET NULL',
@@ -67,7 +67,7 @@ module.exports = {
 			jenisId: {
 				type: Sequelize.UUID,
 				references: {
-					model: 'JenisPeleko',
+					model: 'JenisPelekos',
 					key: 'id',
 				},
 				onDelete: 'SET NULL',
@@ -77,7 +77,7 @@ module.exports = {
 				type: Sequelize.UUID,
 				allowNull: true,
 				references: {
-					model: 'Gudang',
+					model: 'Gudangs',
 					key: 'id',
 				},
 				onDelete: 'SET NULL',

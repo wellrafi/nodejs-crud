@@ -4,7 +4,6 @@ module.exports = {
 		return queryInterface.createTable('GambarAbles', {
 			id: {
 				allowNull: false,
-				autoIncrement: true,
 				primaryKey: true,
 				type: Sequelize.UUID,
 			},
@@ -15,7 +14,7 @@ module.exports = {
 				type: Sequelize.UUID,
 			},
 			gambarAbleType: {
-				type: Sequelize.UUID,
+				type: Sequelize.STRING,
 			},
 		});
 	},

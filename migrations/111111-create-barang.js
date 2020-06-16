@@ -36,31 +36,11 @@ module.exports = {
         type: Sequelize.STRING,
         defaultValue: "dus"
       },
-			kategoriId: {
+			kategoriBarangId: {
 				type: Sequelize.UUID,
 				allowNull: false,
 				references: {
-					model: 'Kategori',
-					key: 'id',
-				},
-				onDelete: 'SET NULL',
-				onUpdate: 'CASCADE',
-			},
-			produsenId: {
-				type: Sequelize.UUID,
-				allowNull: true,
-				references: {
-					model: 'Produsen',
-					key: 'id',
-				},
-				onDelete: 'SET NULL',
-				onUpdate: 'CASCADE',
-			},
-			supplierId: {
-				type: Sequelize.UUID,
-				allowNull: true,
-				references: {
-					model: 'Produsen',
+					model: 'KategoriBarangs',
 					key: 'id',
 				},
 				onDelete: 'SET NULL',
@@ -70,7 +50,7 @@ module.exports = {
 				type: Sequelize.UUID,
 				allowNull: true,
 				references: {
-					model: 'Produsen',
+					model: 'Gudangs',
 					key: 'id',
 				},
 				onDelete: 'SET NULL',
@@ -80,7 +60,7 @@ module.exports = {
 				type: Sequelize.UUID,
 				allowNull: true,
 				references: {
-					model: 'Peleko',
+					model: 'Pelekos',
 					key: 'id',
 				},
 				onDelete: 'SET NULL',

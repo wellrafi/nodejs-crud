@@ -12,7 +12,7 @@ module.exports = {
 				type: Sequelize.UUID,
 				allowNull: false,
 				references: {
-					model: 'User',
+					model: 'Users',
 					key: 'id',
 				},
 				onDelete: 'SET NULL',
@@ -31,10 +31,12 @@ module.exports = {
 			createdAt: {
 				allowNull: false,
 				type: Sequelize.DATE,
+				defaultValue: Sequelize.NOW,
 			},
 			updatedAt: {
 				allowNull: false,
 				type: Sequelize.DATE,
+				defaultValue: Sequelize.NOW,
 			},
 		});
 	},

@@ -38,9 +38,11 @@ module.exports = {
 				type: Sequelize.UUID,
 				allowNull: false,
 				references: {
-					model: 'Jabatan',
+					model: 'Jabatans',
 					key: 'id',
 				},
+				onDelete: "SET NULL",
+				onUpdate: "CASCADE"
 			},
 			aktif: {
 				type: Sequelize.BOOLEAN,

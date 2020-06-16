@@ -5,9 +5,9 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.UUID,
       primaryKey: true
     },
-    name: DataTypes.STRING,
+    nama: DataTypes.STRING,
     createdAt: DataTypes.DATE,
-    updatedAT: DataTypes.DATE
+    updatedAt: DataTypes.DATE
   }, {});
   Kategori.associate = function(models) {
 

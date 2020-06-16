@@ -1,25 +1,14 @@
 'use strict';
 module.exports = {
 	up: (queryInterface, Sequelize) => {
-		return queryInterface.createTable('Akses', {
+		return queryInterface.createTable('Gambars', {
 			id: {
 				allowNull: false,
 				primaryKey: true,
-        type: Sequelize.UUID,
-        defaultValue: Sequelize.UUID,
-      },
-      kode: {
-        type: Sequelize.STRING,
-        allowNull: true,
-      },
-			nama: {
-				type: Sequelize.STRING,
-				allowNull: false,
+				type: Sequelize.UUID,
 			},
-			akses: {
-				type: Sequelize.TINYINT,
-				allowNull: false,
-				defaultValue: false,
+			gambarUrl: {
+				type: Sequelize.STRING,
 			},
 			hapus: {
 				type: Sequelize.BOOLEAN,
@@ -39,6 +28,6 @@ module.exports = {
 		});
 	},
 	down: (queryInterface, Sequelize) => {
-		return queryInterface.dropTable('Akses');
+		return queryInterface.dropTable('Gambars');
 	},
 };
