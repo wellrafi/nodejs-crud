@@ -1,4 +1,5 @@
 'use strict';
+const kode = "GD" + Math.floor((Math.random() * 999) * 999);
 module.exports = (sequelize, DataTypes) => {
 	const Gudang = sequelize.define(
 		'Gudang',
@@ -11,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
       kode: {
         type: DataTypes.STRING,
         allowNull: false,
-        defaultValue: 
+        defaultValue: kode
       },
 			nama: {
 				type: DataTypes.STRING,
