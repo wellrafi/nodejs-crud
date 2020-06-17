@@ -2,6 +2,14 @@ const router = require('express').Router();
 const cont = require('../controllers/index');
 const { upload, uploadMultiple } = require('../middlewares/multer');
 
+// PELEKO routes
+router.get('/peleko', cont.viewPeleko);
+router.post('/peleko', cont.addPeleko);
+router.get('/peleko/tambah', cont.viewAddPeleko);
+router.get('/peleko/:pelekoId/edit', cont.viewUpdatePeleko);
+router.put('/peleko/:pelekoId', cont.updatePeleko);
+router.delete('/peleko/:pelekoId', cont.deletePeleko);
+
 // CATEGORY routes
 router.get('/kategori-barang', cont.viewCategory);
 router.post('/kategori-barang', cont.addCategory);
@@ -13,6 +21,14 @@ router.get('/jabatan', cont.viewJabatan);
 router.post('/jabatan', cont.addJabatan);
 router.put('/jabatan/:jabatanId', cont.updateJabatan);
 router.delete('/jabatan/:jabatanId', cont.deleteJabatan);
+
+// JENISPELEKO routes
+router.get('/jenis-peleko', cont.viewJenisPeleko);
+router.post('/jenis-peleko', cont.addJenisPeleko);
+router.put('/jenis-peleko/:pelekoId', cont.updateJenisPeleko);
+router.delete('/jenis-peleko/:pelekoId', cont.deleteJenisPeleko);
+
+
 
 // // BANK routes
 // router.get('/bank', adminController.viewBank);

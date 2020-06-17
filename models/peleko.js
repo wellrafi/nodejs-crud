@@ -1,5 +1,4 @@
 'use strict';
-const kodePeleko = 'PL' + Math.floor(Math.random() * 999 * 999);
 module.exports = (sequelize, DataTypes) => {
 	const PelakuEkonomi = sequelize.define(
 		'Peleko',
@@ -13,7 +12,6 @@ module.exports = (sequelize, DataTypes) => {
 			kodePeleko: {
 				type: DataTypes.STRING,
 				allowNull: false,
-				defaultValue: kodePeleko,
 			},
 			namaPeleko: {
 				type: DataTypes.STRING,
@@ -69,7 +67,7 @@ module.exports = (sequelize, DataTypes) => {
 			jenisId: {
 				type: DataTypes.UUID,
 				references: {
-					model: 'JenisPelekos',
+					model: 'JenisPeleko',
 					key: 'id',
 				},
 				onDelete: 'SET NULL',
@@ -79,7 +77,7 @@ module.exports = (sequelize, DataTypes) => {
 				type: DataTypes.UUID,
 				allowNull: true,
 				references: {
-					model: 'Gudangs',
+					model: 'Gudang',
 					key: 'id',
 				},
 				onDelete: 'SET NULL',
@@ -88,7 +86,7 @@ module.exports = (sequelize, DataTypes) => {
 			createdById: {
 				type: DataTypes.UUID,
 				references: {
-					model: 'Users',
+					model: 'User',
 					key: 'id',
 				},
 				onDelete: 'SET NULL',

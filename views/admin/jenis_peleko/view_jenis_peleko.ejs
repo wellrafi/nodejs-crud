@@ -21,11 +21,11 @@
 
           <!-- Page Heading -->
           <div class="clearfix">
-            <h1 class="h3 mb-4 text-gray-800 float-left">Jabatan</h1>
-            <p class="ml-4 float-left mt-2"> / Jabatan</p>
+            <h1 class="h3 mb-4 text-gray-800 float-left">Jenis Peleko</h1>
+            <p class="ml-4 float-left mt-2"> / Jenis Peleko</p>
           </div>
 
-          <%- include('table_jabatan.ejs') %> 
+          <%- include('table_jenis_peleko.ejs') %> 
 
         </div>
         <!-- /.container-fluid -->
@@ -46,19 +46,19 @@
     <i class="fas fa-angle-up"></i>
   </a>
 
-<%- include('modal_jabatan.ejs') %> 
+<%- include('modal_jenis_peleko.ejs') %> 
 <%- include('../../partials/js.ejs') %> 
 
 <script>
-  $("#dataTable").on('click', '.btn-update-jabatan', function () {
+  $("#dataTable").on('click', '.btn-update-jenis-peleko', function () {
     let id = $(this).data('id');
     let name = $(this).data('name');
-    $('#edit-modal-jabatan-name').val(name);
-    $('#edit-modal-jabatan-form').attr("action", "/admin/jabatan/" + id + "?_method=PUT");
+    $('#edit-modal-jenis-peleko-name').val(name);
+    $('#edit-modal-jenis-peleko-form').attr("action", "/admin/jenis-peleko/" + id + "?_method=PUT");
   })
-  $("#dataTable").on('click', '.btn-delete-jabatan', function () {
+  $("#dataTable").on('click', '.btn-delete-jenis-peleko', function () {
     let id = $(this).data('id');
-    $('#delete-modal-jabatan-form').attr("action", "/admin/jabatan/" + id + "?_method=DELETE");
+    $('#delete-modal-jenis-peleko-form').attr("action", "/admin/jenis-peleko/" + id + "?_method=DELETE");
   })
   
 </script>

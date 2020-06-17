@@ -1,14 +1,14 @@
-<!-- Modal Tambah Jabatan-->
-<div class="modal fade" id="add-modal-jabatan" tabindex="-1" role="dialog" aria-hidden="true">
+<!-- Modal Tambah jenis-peleko-->
+<div class="modal fade" id="add-modal-jenis-peleko" tabindex="-1" role="dialog" aria-hidden="true">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h5 class="modal-title">Tambah Jabatan Baru</h5>
+				<h5 class="modal-title">Tambah jenis-peleko Baru</h5>
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
 			</div>
-			<form action="/admin/jabatan" method="POST">
+			<form action="/admin/jenis-peleko" method="POST">
 				<div class="modal-body">
 					<div class="form-group">
 						<label for="name">Nama</label>
@@ -17,7 +17,7 @@
 							class="form-control"
 							id="name"
 							name="nama"
-							placeholder="Masukan nama jabatan"
+							placeholder="Masukan nama jenis-peleko"
 							required
 						/>
 					</div>
@@ -31,24 +31,24 @@
 	</div>
 </div>
 
-<!-- Modal Edit Jabatan-->
-<div class="modal fade" id="edit-modal-jabatan" tabindex="-1" role="dialog" aria-hidden="true">
+<!-- Modal Edit jenis-peleko-->
+<div class="modal fade" id="edit-modal-jenis-peleko" tabindex="-1" role="dialog" aria-hidden="true">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h5 class="modal-title">Edit Jabatan</h5>
+				<h5 class="modal-title">Edit jenis-peleko</h5>
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
 			</div>
-			<form id="edit-modal-jabatan-form" action="" method="POST">
+			<form id="edit-modal-jenis-peleko-form" action="" method="POST">
 				<div class="modal-body">
 					<div class="form-group">
 						<label for="nama">Nama</label>
 						<input
 							type="text"
 							class="form-control"
-							id="edit-modal-jabatan-name"
+							id="edit-modal-jenis-peleko-name"
 							name="nama"
 							placeholder="Masukan nama"
 							required
@@ -56,34 +56,34 @@
 					</div>
 				</div>
 				<div class="modal-footer">
-					<input type="hidden" name="_id" id="edit-modal-jabatan-id" />
+					<input type="hidden" name="_id" id="edit-modal-jenis-peleko-id" />
 					<button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-					<button type="submit" class="btn btn-primary">Edit jabatan</button>
+					<button type="submit" class="btn btn-primary">Edit jenis-peleko</button>
 				</div>
 			</form>
 		</div>
 	</div>
 </div>
 
-<!-- Modal Edit Jabatan-->
-<div class="modal fade" id="delete-modal-jabatan" tabindex="-1" role="dialog" aria-hidden="true">
+<!-- Modal Edit jenis-peleko-->
+<div class="modal fade" id="delete-modal-jenis-peleko" tabindex="-1" role="dialog" aria-hidden="true">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h5 class="modal-title">Hapus Jabatan</h5>
+				<h5 class="modal-title">Hapus jenis-peleko</h5>
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
 			</div>
 			<div class="modal-body">
-				<h4>Anda yakin akan menghapus Jabatan ini ?</h4>
-				<p>Menghapus Jabatan bisa saja membuat beberapa item menjadi error </p>
+				<h4>Anda yakin akan menghapus jenis-peleko ini ?</h4>
+				<p>Menghapus jenis-peleko bisa saja membuat beberapa item menjadi error </p>
 			</div>
 			<div class="modal-footer">
-				<form id="delete-modal-jabatan-form" action="" method="POST">
-					<input type="hidden" name="_id" id="edit-modal-jabatan-id" />
+				<form id="delete-modal-jenis-peleko-form" action="" method="POST">
+					<input type="hidden" name="_id" id="edit-modal-jenis-peleko-id" />
 					<button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-					<button type="submit" class="btn btn-danger">Hapus jabatan</button>
+					<button type="submit" class="btn btn-danger">Hapus jenis-peleko</button>
 				</form>
 			</div>
 		</div>

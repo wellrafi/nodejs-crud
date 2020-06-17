@@ -1,5 +1,4 @@
 'use strict';
-const kodePeleko = "GD" + Math.floor((Math.random() * 999) * 999);
 module.exports = {
 	up: (queryInterface, Sequelize) => {
 		return queryInterface.createTable('Pelekos', {
@@ -12,7 +11,6 @@ module.exports = {
 			kodePeleko: {
 				type: Sequelize.STRING,
 				allowNull: false,
-				defaultValue: kodePeleko
 			},
 			namaPeleko: {
 				type: Sequelize.STRING,
@@ -65,7 +63,9 @@ module.exports = {
 				allowNull: true,
 				defaultValue: true,
 			},
-			userId: {
+			// ternyata bug nya model sama migrations nggk sama nama columnya
+			// jadi query nge run terus nggk mau berhenti
+			createdById: {
 				type: Sequelize.UUID,
 				references: {
 					model: 'Users',

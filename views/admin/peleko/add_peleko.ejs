@@ -1,0 +1,111 @@
+<%- include('../../partials/header.ejs') %>
+
+<!-- Page Wrapper -->
+<div id="wrapper">
+	<%- include('../../partials/sidebar.ejs') %>
+
+	<!-- Content Wrapper -->
+	<div id="content-wrapper" class="d-flex flex-column">
+		<!-- Main Content -->
+		<div id="content">
+			<%- include('../../partials/navbar.ejs') %>
+
+			<!-- Begin Page Content -->
+			<div class="container-fluid">
+				<%- include('../../partials/message.ejs') %>
+
+				<!-- Page Heading -->
+				<div class="clearfix">
+					<h1 class="h3 mb-4 text-gray-800 float-left">Tambah Peleko</h1>
+					<p class="ml-4 float-left mt-2">/ <a href="/admin/peleko">Peleko</a> / Tambah Peleko</p>
+				</div>
+
+				<!-- DataTales Example -->
+				<div class="card mb-4">
+					<div class="card-body">
+						<form action="/admin/peleko" method="POST" enctype="multipart/form-data">
+							<div class="form-group">
+								<label for="Nama">Nama</label>
+								<input type="text" class="form-control" required />
+							</div>
+							<div class="form-group">
+								<label for="Nama">Email</label>
+								<input type="email" class="form-control" required />
+							</div>
+							<div class="form-group">
+								<label for="Nama">Nomor Telepon</label>
+								<input type="number" class="form-control" name="nomorTelepon" required />
+							</div>
+							<div class="form-group">
+								<label for="Nama">Jenis</label>
+								<div class="row">
+									<div class="col-xs-6 col-lg-6 col-md-12 col-sm-12">
+										<select name="jenisPeleko" id="" class="form-control">
+											<option value="">--- PILIH JENIS PELEKO ---</option>
+											<% for( let i = 0; i < jenisPeleko.length; i++ ) { %>
+											<option value="<%= jenisPeleko[i].id %>"><%= jenisPeleko[i].nama %></option>
+											<% } %>
+										</select>
+									</div>
+									<div class="col-xs-6 col-lg-6 col-md-12 col-sm-12">
+										<a class="btn btn-link" href="/admin/jenis-peleko#tambah">Tambah Jenis</a>
+									</div>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="Nama">Gudang</label>
+								<div class="row">
+									<div class="col-xs-6 col-lg-6 col-md-12 col-sm-12">
+										<select name="gudang" id="" class="form-control">
+											<option value="">--- PILIH GUDANG ---</option>
+											<% for( let i = 0; i < gudang.length; i++ ) { %> <% } %>
+										</select>
+									</div>
+									<div class="col-xs-6 col-lg-6 col-md-12 col-sm-12">
+										<a class="btn btn-link" href="/admin/gudang#tambah">Tambah Gudang</a>
+									</div>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="Nama">Foto</label>
+								<input type="file" class="form-control" name="foto" required />
+							</div>
+							<div class="form-group">
+								<label for="Nama">Alamat</label>
+								<textarea type="text" class="form-control" name="alamat" required> </textarea>
+							</div>
+							<div class="form-group">
+								<label for="Nama">Kota</label>
+								<input type="text" class="form-control" name="kota" required />
+							</div>
+							<div class="form-group">
+								<label for="Nama">Provinsi</label>
+								<input type="text" class="form-control" name="provinsi" required />
+							</div>
+							<div class="form-group">
+								<label for="Nama">Kode Pos</label>
+								<input type="text" class="form-control" name="kodePos" required />
+							</div>
+							<div class="form-group mt-5">
+								<button class="btn btn-primary">Tambahkan</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+			<!-- /.container-fluid -->
+		</div>
+		<!-- End of Main Content -->
+
+		<%- include('../../partials/footer.ejs') %>
+	</div>
+	<!-- End of Content Wrapper -->
+</div>
+<!-- End of Page Wrapper -->
+
+<!-- Scroll to Top Button-->
+<a class="scroll-to-top rounded" href="#page-top">
+	<i class="fas fa-angle-up"></i>
+</a>
+
+<%- include('../../partials/js.ejs') %>
