@@ -4,11 +4,11 @@ module.exports = (sequelize, DataTypes) => {
     id: {
       allowNull: false,
       primaryKey: true,
-      type: Sequelize.UUID,
-      defaultValue: Sequelize.UUID,
+      type: DataTypes.UUID,
+      defaultValue: sequelize.UUID,
     },
     userId: {
-      type: Sequelize.UUID,
+      type: DataTypes.UUID,
       allowNull: false,
       references: {
         model: 'Users',
@@ -18,7 +18,7 @@ module.exports = (sequelize, DataTypes) => {
       onUpdate: 'CASCADE',
     },
     aksesId: {
-      type: Sequelize.UUID,
+      type: DataTypes.UUID,
       allowNull: false,
       references: {
         model: 'Akses',
@@ -29,13 +29,13 @@ module.exports = (sequelize, DataTypes) => {
     },
     createdAt: {
       allowNull: false,
-      type: Sequelize.DATE,
-      defaultValue: Sequelize.NOW,
+      type: DataTypes.DATE,
+      defaultValue: sequelize.NOW,
     },
     updatedAt: {
       allowNull: false,
-      type: Sequelize.DATE,
-      defaultValue: Sequelize.NOW,
+      type: DataTypes.DATE,
+      defaultValue: sequelize.NOW,
     },
   }, {});
   UserAkses.associate = function(models) {

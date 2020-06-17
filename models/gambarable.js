@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.UUID,
     },
     gambarAbleType: {
-      type: Sequelize.STRING,
+      type: DataTypes.STRING,
     },
   }, {});
   GambarAble.associate = function(models) {

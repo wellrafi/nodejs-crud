@@ -2,7 +2,7 @@
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 	<!-- Sidebar - Brand -->
 	<a class="sidebar-brand d-flex align-items-center justify-content-center" href="/">
-		<div class="sidebar-brand-text mx-3">Wellrafi</div>
+		<div class="sidebar-brand-text mx-3">Usahaku Distribusindo</div>
 	</a>
 
 	<!-- Divider -->
@@ -21,7 +21,7 @@
 
 	<!-- Heading -->
 	<div class="sidebar-heading">
-		Master
+		Data Master
 	</div>
 
 	<li class="nav-item">
@@ -34,28 +34,58 @@
 			aria-controls="masterCollapse"
 		>
 			<i class="fas fa-fw fa-wrench"></i>
-			<span>Master Data</span>
+			<span>Master</span>
 		</a>
-		<div
-			id="masterCollapse"
-			class="collapse"
-			aria-labelledby="headingUtilities"
-			data-parent="#accordionSidebar"
-		>
+		<div id="masterCollapse" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
 			<div class="bg-white py-2 collapse-inner rounded">
-				<a class="collapse-item" href="/admin/category">Category</a>
+				<a class="collapse-item" href="/admin/kategori-barang">Kategori Barang</a>
+				<a class="collapse-item" href="/admin/jenis-peleko">Jenis Peleko</a>
+				<a class="collapse-item" href="/admin/jabatan">Jabatan</a>
 				<a class="collapse-item" href="/admin/bank">Bank</a>
 			</div>
 		</div>
 	</li>
 
-	<!-- Nav Item - Item -->
 	<li class="nav-item">
-		<a class="nav-link collapsed" href="/admin/item">
-			<i class="fas fa-fw fa-hotel"></i>
-			<span>Item</span>
+		<a
+			class="nav-link"
+			href="#"
+			data-toggle="collapse"
+			data-target="#pelekoCollapse"
+			aria-expanded="true"
+			aria-controls="pelekoCollapse"
+		>
+			<i class="fas fa-fw fa-wrench"></i>
+			<span>Peleko</span>
 		</a>
+		<div id="pelekoCollapse" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+			<div class="bg-white py-2 collapse-inner rounded">
+				<a class="collapse-item" href="/admin/peleko">Peleko</a>
+				<a class="collapse-item" href="/admin/tambah-peleko">Tambah Peleko</a>
+			</div>
+		</div>
 	</li>
+
+	<li class="nav-item">
+		<a
+			class="nav-link"
+			href="#"
+			data-toggle="collapse"
+			data-target="#barangCollapse"
+			aria-expanded="true"
+			aria-controls="barangCollapse"
+		>
+			<i class="fas fa-fw fa-wrench"></i>
+			<span>Barang</span>
+		</a>
+		<div id="barangCollapse" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+			<div class="bg-white py-2 collapse-inner rounded">
+				<a class="collapse-item" href="/admin/barang">Barang</a>
+				<a class="collapse-item" href="/admin/tambah-barang">Tambah Barang</a>
+			</div>
+		</div>
+	</li>
+
 
 	<!-- Divider -->
 	<hr class="sidebar-divider d-none d-md-block" />
@@ -69,8 +99,39 @@
 	<li class="nav-item">
 		<a class="nav-link collapsed" href="/admin/booking">
 			<i class="fas fa-fw fa-shopping-cart"></i>
-			<span>Booking</span>
+			<span>Request</span>
 		</a>
+	</li>
+
+	<!-- Divider -->
+	<hr class="sidebar-divider d-none d-md-block" />
+
+	<!-- Heading -->
+	<div class="sidebar-heading">
+		Setting
+	</div>
+
+	<!-- Nav Item - Item -->
+	<li class="nav-item">
+		<a
+			class="nav-link"
+			href="#"
+			data-toggle="collapse"
+			data-target="#userCollapse"
+			aria-expanded="true"
+			aria-controls="userCollapse"
+		>
+			<i class="fas fa-fw fa-wrench"></i>
+			<span>User</span>
+		</a>
+		<div id="userCollapse" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+			<div class="bg-white py-2 collapse-inner rounded">
+				<a class="collapse-item" href="/admin/user">Daftar User</a>
+				<a class="collapse-item" href="/admin/tambah-user">Tambah User</a>
+				<a class="collapse-item" href="/admin/user-akses">User Akses</a>
+				<!-- <a class="collapse-item" href="/admin/bank">Bank</a> -->
+			</div>
+		</div>
 	</li>
 
 	<!-- Sidebar Toggler (Sidebar) -->

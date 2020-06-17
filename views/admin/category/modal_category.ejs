@@ -1,0 +1,91 @@
+<!-- Modal Tambah Kategori-->
+<div class="modal fade" id="add-modal-category" tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title">Tambah Kategori Baru</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<form action="/admin/kategori-barang" method="POST">
+				<div class="modal-body">
+					<div class="form-group">
+						<label for="name">Nama</label>
+						<input
+							type="text"
+							class="form-control"
+							id="name"
+							name="name"
+							placeholder="Enter name"
+							required
+						/>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+					<button type="submit" class="btn btn-primary">Tambahkan</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+
+<!-- Modal Edit Kategori-->
+<div class="modal fade" id="edit-modal-category" tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title">Edit Kategori</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<form id="edit-modal-category-form" action="" method="POST">
+				<div class="modal-body">
+					<div class="form-group">
+						<label for="nama">Nama</label>
+						<input
+							type="text"
+							class="form-control"
+							id="edit-modal-category-name"
+							name="nama"
+							placeholder="Masukan nama"
+							required
+						/>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<input type="hidden" name="_id" id="edit-modal-category-id" />
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+					<button type="submit" class="btn btn-primary">Edit Category</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+
+<!-- Modal Edit Kategori-->
+<div class="modal fade" id="delete-modal-category" tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title">Hapus Kategori</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<h4>Anda yakin akan menghapus kategori ini ?</h4>
+				<p>Menghapus kategori bisa saja membuat beberapa item menjadi error </p>
+			</div>
+			<div class="modal-footer">
+				<form id="delete-modal-category-form" action="" method="POST">
+					<input type="hidden" name="_id" id="edit-modal-category-id" />
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+					<button type="submit" class="btn btn-danger">Hapus Category</button>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>

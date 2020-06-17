@@ -21,11 +21,11 @@
 
           <!-- Page Heading -->
           <div class="clearfix">
-            <h1 class="h3 mb-4 text-gray-800 float-left">Kategori Barang</h1>
-            <p class="ml-4 float-left mt-2"> / Kategori Barang</p>
+            <h1 class="h3 mb-4 text-gray-800 float-left">Jabatan</h1>
+            <p class="ml-4 float-left mt-2"> / Jabatan</p>
           </div>
 
-          <%- include('table_category.ejs') %> 
+          <%- include('table_jabatan.ejs') %> 
 
         </div>
         <!-- /.container-fluid -->
@@ -46,19 +46,19 @@
     <i class="fas fa-angle-up"></i>
   </a>
 
-<%- include('modal_category.ejs') %> 
+<%- include('modal_jabatan.ejs') %> 
 <%- include('../../partials/js.ejs') %> 
 
 <script>
-  $("#dataTable").on('click', '.btn-update-category', function () {
+  $("#dataTable").on('click', '.btn-update-jabatan', function () {
     let id = $(this).data('id');
     let name = $(this).data('name');
-    $('#edit-modal-category-name').val(name);
-    $('#edit-modal-category-form').attr("action", "/admin/kategori-barang/" + id + "?_method=PUT");
+    $('#edit-modal-jabatan-name').val(name);
+    $('#edit-modal-jabatan-form').attr("action", "/admin/jabatan/" + id + "?_method=PUT");
   })
-  $("#dataTable").on('click', '.btn-delete-category', function () {
+  $("#dataTable").on('click', '.btn-delete-jabatan', function () {
     let id = $(this).data('id');
-    $('#delete-modal-category-form').attr("action", "/admin/kategori-barang/" + id + "?_method=DELETE");
+    $('#delete-modal-jabatan-form').attr("action", "/admin/jabatan/" + id + "?_method=DELETE");
   })
   
 </script>

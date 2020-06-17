@@ -9,7 +9,7 @@ module.exports = (sequelize, DataTypes) => {
 				primaryKey: true,
 				type: DataTypes.UUID,
       },
-      kode: {
+      kodeGudang: {
         type: DataTypes.STRING,
         allowNull: false,
         defaultValue: kode
@@ -38,12 +38,12 @@ module.exports = (sequelize, DataTypes) => {
 			createdAt: {
 				allowNull: false,
 				type: DataTypes.DATE,
-				defaultValue: sequelize.NOW(),
+				defaultValue: sequelize.NOW,
 			},
 			updatedAt: {
 				allowNull: false,
 				type: DataTypes.DATE,
-				defaultValue: sequelize.NOW(),
+				defaultValue: sequelize.NOW,
 			},
 		},
 		{}
