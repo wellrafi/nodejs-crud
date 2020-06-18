@@ -8,7 +8,7 @@ module.exports = {
 				type: Sequelize.UUID,
 				defaultValue: Sequelize.UUID,
 			},
-			kode: {
+			kodeBarang: {
 				type: Sequelize.STRING,
 				allowNull: false
 			},
@@ -34,8 +34,13 @@ module.exports = {
       },
       satuan: {
         type: Sequelize.STRING,
-        defaultValue: "dus"
-      },
+				allowNull: true
+			},
+			masuk: {
+				type: Sequelize.BOOLEAN,
+				allowNull: false,
+				defaultValue: true
+			},
 			kategoriBarangId: {
 				type: Sequelize.UUID,
 				allowNull: false,

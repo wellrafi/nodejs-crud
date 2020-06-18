@@ -10,6 +10,12 @@ router.get('/peleko/:pelekoId/edit', cont.viewUpdatePeleko);
 router.put('/peleko/:pelekoId', cont.updatePeleko);
 router.delete('/peleko/:pelekoId', cont.deletePeleko);
 
+// GUDANG routes
+router.get('/gudang', cont.viewGudang);
+router.post('/gudang', cont.addGudang);
+router.put('/gudang/:gudangId', cont.updateGudang);
+router.delete('/gudang/:gudangId', cont.deleteGudang);
+
 // CATEGORY routes
 router.get('/kategori-barang', cont.viewCategory);
 router.post('/kategori-barang', cont.addCategory);

@@ -1,0 +1,5 @@
+@media (min-width: 768px) {
+  .sidebar .nav-item .nav-link {
+      padding: 0.5rem 1rem !important ;
+  }
+}

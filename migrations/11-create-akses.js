@@ -8,7 +8,7 @@ module.exports = {
         type: Sequelize.UUID,
         defaultValue: Sequelize.UUID,
       },
-      kode: {
+      kodeAkses: {
         type: Sequelize.STRING,
         allowNull: true,
       },

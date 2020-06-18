@@ -18,9 +18,26 @@ module.exports = (sequelize, DataTypes) => {
 				type: DataTypes.STRING,
 				allowNull: false,
 			},
+			fotoUrl: {
+				type: DataTypes.STRING,
+				allowNull: true,
+				default: process.env.IMAGE_DOMAIN + "/images/gudang.png"
+			},
 			alamat: {
 				type: DataTypes.STRING,
 				allowNull: true,
+			},
+			kota: {
+				type: DataTypes.STRING,
+				allowNull: true,
+			},
+			provinsi: {
+				type: DataTypes.STRING,
+				allowNull: true,
+			},
+			kodePos: {
+				type: DataTypes.STRING,
+				allowNull: true
 			},
 			lonTd: {
 				type: DataTypes.STRING,

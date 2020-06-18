@@ -1,64 +1,52 @@
-<%- include('../../partials/header.ejs') %> 
+<%- include('../../partials/header.ejs') %>
 
-  <!-- Page Wrapper -->
-  <div id="wrapper">
+<!-- Page Wrapper -->
+<div id="wrapper">
+	<%- include('../../partials/sidebar.ejs') %>
 
-    <%- include('../../partials/sidebar.ejs') %> 
+	<!-- Content Wrapper -->
+	<div id="content-wrapper" class="d-flex flex-column">
+		<!-- Main Content -->
+		<div id="content">
+			<%- include('../../partials/navbar.ejs') %>
 
-    <!-- Content Wrapper -->
-    <div id="content-wrapper" class="d-flex flex-column">
+			<!-- Begin Page Content -->
+			<div class="container-fluid">
+				<%- include('../../partials/message.ejs') %>
 
-      <!-- Main Content -->
-      <div id="content">
+				<!-- Page Heading -->
+				<div class="clearfix">
+					<h1 class="h3 text-gray-800 float-left">Kategori Barang</h1>
+				</div>
 
-        <%- include('../../partials/navbar.ejs') %> 
+        <%- include('table_category.ejs') %>
+			</div>
+			<!-- /.container-fluid -->
+		</div>
+		<!-- End of Main Content -->
 
-        <!-- Begin Page Content -->
-        <div class="container-fluid">
+		<%- include('../../partials/footer.ejs') %>
+	</div>
+	<!-- End of Content Wrapper -->
+</div>
+<!-- End of Page Wrapper -->
 
-          <%- include('../../partials/message.ejs') %> 
+<!-- Scroll to Top Button-->
+<a class="scroll-to-top rounded" href="#page-top">
+	<i class="fas fa-angle-up"></i>
+</a>
 
-
-          <!-- Page Heading -->
-          <div class="clearfix">
-            <h1 class="h3 mb-4 text-gray-800 float-left">Kategori Barang</h1>
-            <p class="ml-4 float-left mt-2"> / Kategori Barang</p>
-          </div>
-
-          <%- include('table_category.ejs') %> 
-
-        </div>
-        <!-- /.container-fluid -->
-
-      </div>
-      <!-- End of Main Content -->
-
-      <%- include('../../partials/footer.ejs') %> 
-
-    </div>
-    <!-- End of Content Wrapper -->
-
-  </div>
-  <!-- End of Page Wrapper -->
-
-  <!-- Scroll to Top Button-->
-  <a class="scroll-to-top rounded" href="#page-top">
-    <i class="fas fa-angle-up"></i>
-  </a>
-
-<%- include('modal_category.ejs') %> 
-<%- include('../../partials/js.ejs') %> 
+<%- include('modal_category.ejs') %> <%- include('../../partials/js.ejs') %>
 
 <script>
-  $("#dataTable").on('click', '.btn-update-category', function () {
-    let id = $(this).data('id');
-    let name = $(this).data('name');
-    $('#edit-modal-category-name').val(name);
-    $('#edit-modal-category-form').attr("action", "/admin/kategori-barang/" + id + "?_method=PUT");
-  })
-  $("#dataTable").on('click', '.btn-delete-category', function () {
-    let id = $(this).data('id');
-    $('#delete-modal-category-form').attr("action", "/admin/kategori-barang/" + id + "?_method=DELETE");
-  })
-  
+	$('#dataTable').on('click', '.btn-update-category', function () {
+		let id = $(this).data('id');
+		let name = $(this).data('name');
+		$('#edit-modal-category-name').val(name);
+		$('#edit-modal-category-form').attr('action', '/admin/kategori-barang/' + id + '?_method=PUT');
+	});
+	$('#dataTable').on('click', '.btn-delete-category', function () {
+		let id = $(this).data('id');
+		$('#delete-modal-category-form').attr('action', '/admin/kategori-barang/' + id + '?_method=DELETE');
+	});
 </script>

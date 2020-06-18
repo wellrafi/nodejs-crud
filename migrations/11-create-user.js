@@ -1,4 +1,5 @@
 'use strict';
+const kodeUR = "UR" + Math.floor((Math.random() * 999) * 999);
 module.exports = {
 	up: (queryInterface, Sequelize) => {
 		return queryInterface.createTable('Users', {
@@ -8,17 +9,35 @@ module.exports = {
 				type: Sequelize.UUID,
 				defaultValue: Sequelize.UUID,
 			},
+			kodeUser: {
+				type: Sequelize.STRING,
+				allowNull: false,
+				defaultValue: kodeUR
+			},
 			nama: {
         type: Sequelize.STRING,
         allowNull: false,
 			},
+			username: {
+				type: Sequelize.STRING,
+				allowNull:false,
+			},
 			email: {
-        type: Sequelize.STRING,
+				type: Sequelize.STRING,
         allowNull: false,
 			},
 			password: {
-        type: Sequelize.STRING,
+				type: Sequelize.STRING,
         allowNull: false,
+			},
+			slug: {
+				type: Sequelize.STRING,
+				allowNull: false
+			},
+			fotoUrl: {
+				type: Sequelize.STRING,
+				allowNull: true,
+				default: process.env.DOMAIN + "/images/user.png"
 			},
 			noTelp: {
 				type: Sequelize.STRING,
@@ -29,10 +48,6 @@ module.exports = {
         type: Sequelize.TEXT,
         allowNull: true,
         defaultValue: null
-      },
-      fotoUrl: {
-        type: Sequelize.STRING,
-        allowNull: true,
       },
 			jabatanId: {
 				type: Sequelize.UUID,

@@ -1,49 +1,84 @@
-<%- include('../../partials/header.ejs') %> 
+<%- include('../../partials/header.ejs') %>
 
-  <!-- Page Wrapper -->
-  <div id="wrapper">
+<!-- Page Wrapper -->
+<div id="wrapper">
+	<%- include('../../partials/sidebar.ejs') %>
 
-    <%- include('../../partials/sidebar.ejs') %> 
+	<!-- Content Wrapper -->
+	<div id="content-wrapper" class="d-flex flex-column">
+		<!-- Main Content -->
+		<div id="content">
+			<%- include('../../partials/navbar.ejs') %>
 
-    <!-- Content Wrapper -->
-    <div id="content-wrapper" class="d-flex flex-column">
+			<!-- Begin Page Content -->
+			<div class="container-fluid">
+				<%- include('../../partials/message.ejs') %>
 
-      <!-- Main Content -->
-      <div id="content">
+				<!-- Page Heading -->
+				<div class="clearfix">
+					<h1 class="h3 mb-4 text-gray-800 float-left">Peleko</h1>
+					<p class="ml-4 float-left mt-2">/ Peleko</p>
+				</div>
 
-        <%- include('../../partials/navbar.ejs') %> 
+				<div class="simple-overview row mt-2 mb-5">
+					<div class="col-xs-6 col-lg-6 col-md-12 col-sm-12 col-12 mx-3" id="map"></div>
+					<div class="col-xs-6 col-lg-6 col-md-12 col-sm-12 col-12 overview"></div>
+				</div>
 
-        <!-- Begin Page Content -->
-        <div class="container-fluid">
+				<%- include('table_peleko.ejs') %>
+			</div>
+			<!-- /.container-fluid -->
+		</div>
+		<!-- End of Main Content -->
 
-          <%- include('../../partials/message.ejs') %> 
+		<%- include('../../partials/footer.ejs') %>
+	</div>
+	<!-- End of Content Wrapper -->
+</div>
+<!-- End of Page Wrapper -->
 
+<!-- Scroll to Top Button-->
+<a class="scroll-to-top rounded" href="#page-top">
+	<i class="fas fa-angle-up"></i>
+</a>
 
-          <!-- Page Heading -->
-          <div class="clearfix">
-            <h1 class="h3 mb-4 text-gray-800 float-left">Peleko</h1>
-            <p class="ml-4 float-left mt-2"> / Peleko</p>
-          </div>
+<%- include('../../partials/js.ejs') %>
 
-          <%- include('table_peleko.ejs') %> 
+<script
+	async
+	defer
+	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBX43tQYM_6xR9uegpG3nzz6xaaOAvA-S8&callback=initMap"
+></script>
+<style>
+	#map {
+		width: 100%;
+		min-height: 400px;
+	}
+</style>
+<script>
+	// var geocoder = new google.maps.Geocoder();
+	// function initialize() {
+	// 	var latLng = new google.maps.LatLng(-7.7801502, 110.3846387);
+	// 	var map = new google.maps.Map(document.getElementById('map'), {
+	// 		zoom: 15,
+	// 		center: latLng,
+	// 		mapTypeId: google.maps.MapTypeId.ROADMAP,
+	// 	});
 
-        </div>
-        <!-- /.container-fluid -->
-
-      </div>
-      <!-- End of Main Content -->
-
-      <%- include('../../partials/footer.ejs') %> 
-
-    </div>
-    <!-- End of Content Wrapper -->
-
-  </div>
-  <!-- End of Page Wrapper -->
-
-  <!-- Scroll to Top Button-->
-  <a class="scroll-to-top rounded" href="#page-top">
-    <i class="fas fa-angle-up"></i>
-  </a>
-
-<%- include('../../partials/js.ejs') %> 
+	// 	var marker = new google.maps.Marker({
+	// 		position: latLng,
+	// 		title: 'Ambarrukmo Plaza Yogyakarta',
+	// 		map: map,
+	// 		draggable: true,
+	// 	});
+  // }
+  
+	var map;
+	function initMap() {
+		map = new google.maps.Map(document.getElementById('map'), {
+			center: { lat: -34.397, lng: 150.644 },
+			zoom: 8,
+		});
+  }
+  
+</script>

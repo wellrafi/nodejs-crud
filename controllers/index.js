@@ -15,6 +15,14 @@ const {
 } = require('./JabatanController');
 
 const {
+	addGudang,
+	updateGudang,
+	deleteGudang,
+  viewGudang,
+  viewSingleGudang,
+} = require('./GudangController');
+
+const {
 	addJenisPeleko,
 	updateJenisPeleko,
 	deleteJenisPeleko,
@@ -31,7 +39,6 @@ const {
 	viewAddPeleko,
 	viewUpdatePeleko
 } = require('./PelekoController');
-
 
 module.exports = {
 	addCategory,
@@ -58,6 +65,12 @@ module.exports = {
   viewPeleko,
 	viewSinglePeleko,
 	viewAddPeleko,
-	viewUpdatePeleko
+	viewUpdatePeleko,
+
+	addGudang,
+	updateGudang,
+	deleteGudang,
+  viewGudang,
+  viewSingleGudang,
 
 };

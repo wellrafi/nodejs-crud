@@ -1,5 +1,5 @@
 'use strict';
-const kodeGudang = "GD" + Math.floor((Math.random() * 999) * 999);
+const kodeGudang = 'GD' + Math.floor(Math.random() * 999 * 999);
 module.exports = {
 	up: (queryInterface, Sequelize) => {
 		return queryInterface.createTable('Gudangs', {
@@ -8,21 +8,36 @@ module.exports = {
 				primaryKey: true,
 				type: Sequelize.UUID,
 				defaultValue: Sequelize.UUID,
-      },
-      kodeGudang: {
-        type: Sequelize.STRING,
-        allowNull: false,
-        defaultValue: kodeGudang
-      },
+			},
+			kodeGudang: {
+				type: Sequelize.STRING,
+				allowNull: false,
+				defaultValue: kodeGudang,
+			},
 			nama: {
 				type: Sequelize.STRING,
 				allowNull: false,
-				defaultValue: 'Tanpa Nama',
+			},
+			fotoUrl: {
+				type: Sequelize.STRING,
+				allowNull: true,
+				default: process.env.DOMAIN + '/images/gudang.png',
 			},
 			alamat: {
 				type: Sequelize.STRING,
 				allowNull: true,
-				defaultValue: 'Tanpa Alamat',
+			},
+			kota: {
+				type: Sequelize.STRING,
+				allowNull: true,
+			},
+			provinsi: {
+				type: Sequelize.STRING,
+				allowNull: true,
+			},
+			kodePos: {
+				type: Sequelize.STRING,
+				allowNull: true,
 			},
 			lonTd: {
 				type: Sequelize.DOUBLE,

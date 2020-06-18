@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.UUID,
       allowNull: false,
       references: {
-        model: "Users",
+        model: "User",
         key: "id"
       },
       onDelete: "SET NULL",
@@ -21,7 +21,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.UUID,
       allowNull: false,
       references: {
-        model: "Pelekos",
+        model: "Peleko",
         key: "id"
       },
       onDelete: "SET NULL",

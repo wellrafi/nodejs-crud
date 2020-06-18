@@ -2,9 +2,9 @@
 <div class="card my-4">
 	<div class="card-header mb-3">
 		<!-- Button trigger modal -->
-		<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#add-modal-category">
+		<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#add-modal-gudang">
 			<i class="fas fa-plus"></i>
-			<span class="ml-1">Tambah Kategori</span>
+			<span class="ml-1">Tambah gudang</span>
 		</button>
 	</div>
 	<div class="card-body">
@@ -18,28 +18,33 @@
 					</tr>
 				</thead>
 				<tbody>
-					<% for( let i = 0; i < category.length; i++ ) { %>
+					<% for( let i = 0; i < gudang.length; i++ ) { %>
 					<tr>
 						<td><%= i + 1 %></td>
-						<td><%= category[i].nama %></td>
 						<td>
-							<form action="/admin/category/<%= category[i].id %>?_method=DELETE" method="POST">
+							<div class="clearfix">
+								<div class="float-left"><img src="<%= gudang[i].fotoUrl %>" width="50" alt=""></div>
+								<span><%= gudang[i].nama %></span>
+							</div>
+						</td>
+						<td>
+							<form action="/admin/gudang/<%= gudang[i].id %>?_method=DELETE" method="POST">
 								<button
 									type="button"
-									class="btn btn-icon btn-warning btn-circle btn-sm btn-update-category"
+									class="btn btn-icon btn-warning btn-circle btn-sm btn-update-gudang"
 									data-toggle="modal"
-									data-target="#edit-modal-category"
-									data-id="<%= category[i].id %>"
-									data-name="<%= category[i].nama %>"
+									data-target="#edit-modal-gudang"
+									data-id="<%= gudang[i].id %>"
+									data-name="<%= gudang[i].nama %>"
 								>
 									<i class="fas fa-edit"></i>
 								</button>
 								<button
 									type="button"
 									data-toggle="modal"
-									data-target="#delete-modal-category"
-									data-id="<%= category[i].id %>"
-									class="btn btn-icon btn-danger btn-circle btn-sm btn-delete-category"
+									data-target="#delete-modal-gudang"
+									data-id="<%= gudang[i].id %>"
+									class="btn btn-icon btn-danger btn-circle btn-sm btn-delete-gudang"
 								>
 									<i class="fas fa-trash"></i>
 								</button>

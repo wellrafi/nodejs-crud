@@ -12,14 +12,14 @@
 
 			<!-- Begin Page Content -->
 			<div class="container-fluid">
+				<%- include('../../partials/message.ejs') %>
 
-				<%- include('../../partials/message.ejs') %> 
-				
 				<!-- Page Heading -->
-				<h1 class="h3 mb-4 text-gray-800">Item</h1>
+				<div class="clearfix">
+					<h1 class="h3 text-gray-800 float-left">Gudang</h1>
+				</div>
 
-				<%- include('show_table_item.ejs') %>
-				
+        <%- include('table_gudang.ejs') %>
 			</div>
 			<!-- /.container-fluid -->
 		</div>
@@ -36,8 +36,17 @@
 	<i class="fas fa-angle-up"></i>
 </a>
 
-<%- include('../../partials/js.ejs') %>
+<%- include('modal_gudang.ejs') %> <%- include('../../partials/js.ejs') %>
 
 <script>
-	CKEDITOR.replace('description');
+	$('#dataTable').on('click', '.btn-update-gudang', function () {
+		let id = $(this).data('id');
+		let name = $(this).data('name');
+		$('#edit-modal-gudang-name').val(name);
+		$('#edit-modal-gudang-form').attr('action', '/admin/gudang/' + id + '?_method=PUT');
+	});
+	$('#dataTable').on('click', '.btn-delete-gudang', function () {
+		let id = $(this).data('id');
+		$('#delete-modal-gudang-form').attr('action', '/admin/gudang/' + id + '?_method=DELETE');
+	});
 </script>

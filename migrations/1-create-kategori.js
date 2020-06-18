@@ -11,7 +11,6 @@ module.exports = {
 			nama: {
 				type: Sequelize.STRING,
 				allowNull: false,
-				defaultValue: "Tanpa Nama"
 			},
 			hapus: {
 				type: Sequelize.BOOLEAN,

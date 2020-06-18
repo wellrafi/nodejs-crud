@@ -33,7 +33,7 @@
 			aria-expanded="true"
 			aria-controls="masterCollapse"
 		>
-			<i class="fas fa-fw fa-wrench"></i>
+			<i class="fas fa-fw fa-archive"></i>
 			<span>Master</span>
 		</a>
 		<div id="masterCollapse" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
@@ -68,6 +68,27 @@
 		</div>
 	</li>
 
+
+	<li class="nav-item">
+		<a
+			class="nav-link"
+			href="#"
+			data-toggle="collapse"
+			data-target="#gudangCollapse"
+			aria-expanded="true"
+			aria-controls="gudangCollapse"
+		>
+			<i class="fas fa-fw fa-wrench"></i>
+			<span>Gudang</span>
+		</a>
+		<div id="gudangCollapse" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+			<div class="bg-white py-2 collapse-inner rounded">
+				<a class="collapse-item" href="/admin/gudang">Gudang</a>
+				<a class="collapse-item" href="/admin/gudang/tambah">Tambah Gudang</a>
+			</div>
+		</div>
+	</li>
+
 	<li class="nav-item">
 		<a
 			class="nav-link"
@@ -84,6 +105,8 @@
 			<div class="bg-white py-2 collapse-inner rounded">
 				<a class="collapse-item" href="/admin/barang">Barang</a>
 				<a class="collapse-item" href="/admin/barang/tambah">Tambah Barang</a>
+				<a class="collapse-item" href="/admin/barang?q=masuk">Masuk</a>
+				<a class="collapse-item" href="/admin/barang?q=keluar">Keluar</a>
 			</div>
 		</div>
 	</li>
@@ -99,7 +122,7 @@
 
 	<!-- Nav Item - Item -->
 	<li class="nav-item">
-		<a class="nav-link collapsed" href="/admin/booking">
+		<a class="nav-link collapsed" href="/admin/request">
 			<i class="fas fa-fw fa-shopping-cart"></i>
 			<span>Request</span>
 		</a>

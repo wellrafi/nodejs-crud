@@ -19,6 +19,10 @@ module.exports = (sequelize, DataTypes) => {
 				type: DataTypes.STRING,
 				allowNull: false,
 			},
+			username: {
+				type: DataTypes.STRING,
+				allowNull:false,
+			},
 			email: {
 				type: DataTypes.STRING,
 				allowNull: false,
@@ -26,6 +30,15 @@ module.exports = (sequelize, DataTypes) => {
 			password: {
 				type: DataTypes.STRING,
 				allowNull: false,
+			},
+			slug: {
+				type: DataTypes.STRING,
+				allowNull: false
+			},
+			fotoUrl: {
+				type: DataTypes.STRING,
+				allowNull: true,
+				defaultValue: process.env.IMAGE_DOMAIN + "/images/user.png"
 			},
 			noTelp: {
 				type: DataTypes.STRING,
@@ -36,10 +49,6 @@ module.exports = (sequelize, DataTypes) => {
 				type: DataTypes.TEXT,
 				allowNull: true,
 				defaultValue: null,
-			},
-			fotoUrl: {
-				type: DataTypes.STRING,
-				allowNull: true,
 			},
 			jabatanId: {
 				type: DataTypes.UUID,

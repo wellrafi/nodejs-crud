@@ -10,10 +10,22 @@ module.exports = {
       userId: {
         type: Sequelize.UUID,
         allowNull: false,
+        references: {
+          model: "Users",
+          key: "id"
+        },
+        onDelete: "SET NULL",
+        onUpdate: "CASCADE"
       },
       pelekoId: {
         type: Sequelize.UUID,
         allowNull: false,
+        references: {
+          model: "Pelekos",
+          key: "id"
+        },
+        onDelete: "SET NULL",
+        onUpdate: "CASCADE"
       },
     });
   },
